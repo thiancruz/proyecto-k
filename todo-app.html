@@ -1,17 +1,27 @@
+Aquí tienes un diseño completamente diferente. Si el anterior era "limpio y minimalista", este es un "Llamativo Audaz" (Bold & Modern).
+
+Se basa en una estética de "Bento Box" (cuadrículas asimétricas), utiliza tipografías más grandes y pesadas, y un modo oscuro por defecto con un color de acento neón para un impacto visual máximo y un aire muy tecnológico/actual.
+
+Igual que el anterior, es un único archivo HTML con el CSS incluido, listo para copiar y usar. Es totalmente responsive (se adapta a móviles cambiando el orden de la cuadrícula).
+
+HTML
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Blog Llamativo | Diseño y Estrategia</title>
+    <title>Blog Diseño Audaz | Impacto Visual</title>
     <style>
-        /* Variables de color para fácil personalización */
+        /* Variables de color - Estilo Neo-Brutalista / Modo Oscuro */
         :root {
-            --primario: #6366f1;
-            --oscuro: #1e293b;
-            --texto: #334155;
-            --fondo: #f8fafc;
-            --blanco: #ffffff;
+            --bg-principal: #0a0a0c;
+            --bg-tarjeta: #141417;
+            --acento: #00ffbf; /* Verde Neón */
+            --texto-p: #a1a1aa;
+            --texto-h: #ffffff;
+            --borde: #27272a;
+            --font-main: 'Archivo Black', sans-serif; /* Usaremos fuentes de sistema que parezcan pesadas */
+            --font-body: 'Inter', sans-serif; 
         }
 
         * {
@@ -21,170 +31,251 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: var(--texto);
-            background-color: var(--fondo);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-principal);
+            color: var(--texto-p);
+            line-height: 1.5;
+            padding: 20px;
         }
 
-        /* Cabecera */
-        header {
-            background: var(--oscuro);
-            color: var(--blanco);
-            padding: 2rem 0;
-            text-align: center;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        }
-
-        header h1 {
-            font-size: 2.5rem;
-            letter-spacing: -1px;
-        }
-
-        header p {
-            opacity: 0.8;
-            font-weight: 300;
-        }
-
-        /* Contenedor Principal */
-        .container {
-            max-width: 1000px;
-            margin: 2rem auto;
-            padding: 0 20px;
-        }
-
-        /* Grid de artículos */
-        .blog-grid {
+        /* Contenedor Bento Grid */
+        .bento-container {
+            max-width: 1200px;
+            margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: auto;
+            gap: 20px;
         }
 
-        /* Tarjeta de Blog */
-        .card {
-            background: var(--blanco);
-            border-radius: 12px;
+        /* Estilo general de los módulos (tarjetas) */
+        .module {
+            background-color: var(--bg-tarjeta);
+            border: 1px solid var(--borde);
+            border-radius: 24px;
+            padding: 30px;
+            transition: all 0.3s ease;
             overflow: hidden;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
+            position: relative;
         }
 
-        .card:hover {
-            transform: translateY(-5px);
+        .module:hover {
+            border-color: var(--acento);
+            transform: translateY(-3px);
         }
 
-        .card-img {
-            width: 100%;
-            height: 200px;
-            background: #cbd5e1;
+        h1, h2, h3 {
+            color: var(--texto-h);
+            font-weight: 800;
+            letter-spacing: -1px;
+            line-height: 1.1;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 0.95rem;
+        }
+
+        /* 1. Módulo Hero (Título Grande) - Ocupa 3 columnas */
+        .hero {
+            grid-column: span 3;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: linear-gradient(135deg, #141417 0%, #1e1e22 100%);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+        }
+
+        .hero span {
+            color: var(--acento);
+        }
+
+        /* 2. Módulo Perfil/Stats - Ocupa 1 columna */
+        .stats {
+            grid-column: span 1;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .stats .avatar {
+            width: 80px;
+            height: 80px;
+            background: #27272a;
+            border-radius: 50%;
+            margin-bottom: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #64748b;
+            font-size: 2rem;
+            border: 2px solid var(--acento);
+        }
+
+        /* 3. Módulos de Artículos (Clase base para los artículos) */
+        .post {
+            grid-column: span 2; /* Por defecto ocupan 2 columnas */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .post-tag {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--acento);
             font-weight: bold;
+            margin-bottom: 10px;
+            display: block;
         }
 
-        .card-content {
-            padding: 1.5rem;
+        .post h2 {
+            font-size: 1.8rem;
         }
 
-        .category {
-            display: inline-block;
-            background: #e0e7ff;
-            color: var(--primario);
-            padding: 0.2rem 0.8rem;
-            border-radius: 20px;
+        .post-meta {
+            margin-top: 20px;
             font-size: 0.8rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid var(--borde);
+            padding-top: 15px;
         }
 
-        .card h2 {
-            font-size: 1.4rem;
-            margin-bottom: 0.5rem;
-            color: var(--oscuro);
+        /* 4. Módulo Destacado Ancho - Ocupa 2 cols de ancho y es más alto */
+        .featured-wide {
+            grid-column: span 2;
+            background: linear-gradient(to bottom right, rgba(0, 255, 191, 0.1), rgba(20, 20, 23, 1));
         }
 
-        .card p {
-            font-size: 0.95rem;
-            margin-bottom: 1.5rem;
+        /* 5. Módulo Newsletter - Ocupa 4 columnas (ancho completo) */
+        .newsletter {
+            grid-column: span 4;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: var(--acento);
+            color: var(--bg-principal);
         }
 
-        .btn-leer {
-            display: inline-block;
-            color: var(--primario);
+        .newsletter h3 {
+            color: var(--bg-principal);
+            font-size: 2rem;
+            margin-bottom: 0;
+        }
+
+        .newsletter p {
+            color: rgba(10, 10, 12, 0.8);
+        }
+
+        .btn-subscribe {
+            background-color: var(--bg-principal);
+            color: var(--texto-h);
+            padding: 12px 24px;
+            border-radius: 30px;
             text-decoration: none;
             font-weight: bold;
-            border-bottom: 2px solid transparent;
-            transition: border 0.3s;
+            transition: opacity 0.3s;
         }
 
-        .btn-leer:hover {
-            border-bottom: 2px solid var(--primario);
+        .btn-subscribe:hover {
+            opacity: 0.8;
         }
 
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 3rem 0;
-            margin-top: 4rem;
-            background: #f1f5f9;
-            color: #94a3b8;
+        /* --- RESPONSIVE --- */
+        @media (max-width: 900px) {
+            .hero, .post, .featured-wide {
+                grid-column: span 2;
+            }
+            .stats {
+                grid-column: span 2;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .bento-container {
+                grid-template-columns: repeat(1, 1fr);
+            }
+            .hero, .stats, .post, .featured-wide, .newsletter {
+                grid-column: span 1;
+            }
+            .newsletter {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>Inspiración Digital</h1>
-        <p>Aprende a crear contenido que realmente impacte.</p>
-    </header>
+    <main class="bento-container">
+        
+        <header class="module hero">
+            <span class="post-tag">BLOG OFICIAL</span>
+            <h1>Ideas <span>Audaces</span> para Creadores Digitales.</h1>
+            <p>Estrategias visuales y de contenido que no pueden ser ignoradas en 2026.</p>
+        </header>
 
-    <div class="container">
-        <section class="blog-grid">
-            
-            <article class="card">
-                <div class="card-img" style="background: linear-gradient(135deg, #6366f1, #a855f7);">
-                    IMAGEN DESTACADA
-                </div>
-                <div class="card-content">
-                    <span class="category">DISEÑO</span>
-                    <h2>Psicología del Color en Blogs</h2>
-                    <p>Descubre cómo los colores que eliges afectan el tiempo que tus usuarios pasan leyendo tus artículos.</p>
-                    <a href="#" class="btn-leer">Leer más →</a>
-                </div>
-            </article>
+        <aside class="module stats">
+            <div class="avatar">✍️</div>
+            <h3>Editor</h3>
+            <p>Artículos Semanales</p>
+        </aside>
 
-            <article class="card">
-                <div class="card-img" style="background: linear-gradient(135deg, #3b82f6, #2dd4bf);">
-                    IMAGEN DESTACADA
-                </div>
-                <div class="card-content">
-                    <span class="category">ESTRATEGIA</span>
-                    <h2>Títulos que Generan Clics</h2>
-                    <p>No es clickbait, es arte. Aprende la fórmula para escribir encabezados que nadie pueda ignorar.</p>
-                    <a href="#" class="btn-leer">Leer más →</a>
-                </div>
-            </article>
+        <article class="module post">
+            <div>
+                <span class="post-tag">DISEÑO</span>
+                <h2>Minimalismo vs Neo-Brutalismo</h2>
+                <p>¿Qué estética convierte más este año? Analizamos tendencias.</p>
+            </div>
+            <div class="post-meta">
+                <span>5 min lectura</span>
+                <span style="color: var(--acento)">Leer →</span>
+            </div>
+        </article>
 
-            <article class="card">
-                <div class="card-img" style="background: linear-gradient(135deg, #f59e0b, #ef4444);">
-                    IMAGEN DESTACADA
-                </div>
-                <div class="card-content">
-                    <span class="category">SEO</span>
-                    <h2>Optimización en 2026</h2>
-                    <p>Lo que Google busca hoy en día no es cantidad, sino calidad y velocidad de respuesta. Te explicamos por qué.</p>
-                    <a href="#" class="btn-leer">Leer más →</a>
-                </div>
-            </article>
+        <article class="module post featured-wide">
+            <div>
+                <span class="post-tag">ESTRATEGIA</span>
+                <h2>Crear un Blog Llamativo: La Guía Definitiva 2026</h2>
+                <p>No es solo el diseño. Es la velocidad, la interactividad y la personalidad. Aprende los 4 pilares fundamentales para destacar.</p>
+            </div>
+            <div class="post-meta">
+                <span>12 min lectura</span>
+                <span style="color: var(--acento)">Leer artículo completo →</span>
+            </div>
+        </article>
 
+        <article class="module post">
+            <div>
+                <span class="post-tag">SEO</span>
+                <h2>SEO en la era de la IA</h2>
+                <p>Cómo optimizar para motores de búsqueda que ahora son respuestas directas.</p>
+            </div>
+            <div class="post-meta">
+                <span>8 min lectura</span>
+                <span style="color: var(--acento)">Leer →</span>
+            </div>
+        </article>
+
+        <section class="module newsletter">
+            <div>
+                <h3>No te pierdas nada.</h3>
+                <p>Únete a la newsletter de estrategias digitales.</p>
+            </div>
+            <a href="#" class="btn-subscribe">Suscribirse</a>
         </section>
-    </div>
 
-    <footer>
-        <p>&copy; 2026 Mi Blog Inspiración. Todos los derechos reservados.</p>
-    </footer>
+    </main>
 
 </body>
 </html>
