@@ -1,75 +1,190 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To-Do List App</title>
+    <title>Mi Blog Llamativo | Diseño y Estrategia</title>
     <style>
-        body { font-family: Arial, sans-serif; }
-        #task-list { margin-top: 20px; }
-        .completed { text-decoration: line-through; }
-        button { margin-left: 10px; }
+        /* Variables de color para fácil personalización */
+        :root {
+            --primario: #6366f1;
+            --oscuro: #1e293b;
+            --texto: #334155;
+            --fondo: #f8fafc;
+            --blanco: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--texto);
+            background-color: var(--fondo);
+        }
+
+        /* Cabecera */
+        header {
+            background: var(--oscuro);
+            color: var(--blanco);
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            letter-spacing: -1px;
+        }
+
+        header p {
+            opacity: 0.8;
+            font-weight: 300;
+        }
+
+        /* Contenedor Principal */
+        .container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 20px;
+        }
+
+        /* Grid de artículos */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        /* Tarjeta de Blog */
+        .card {
+            background: var(--blanco);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-img {
+            width: 100%;
+            height: 200px;
+            background: #cbd5e1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #64748b;
+            font-weight: bold;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .category {
+            display: inline-block;
+            background: #e0e7ff;
+            color: var(--primario);
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .card h2 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: var(--oscuro);
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-leer {
+            display: inline-block;
+            color: var(--primario);
+            text-decoration: none;
+            font-weight: bold;
+            border-bottom: 2px solid transparent;
+            transition: border 0.3s;
+        }
+
+        .btn-leer:hover {
+            border-bottom: 2px solid var(--primario);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 0;
+            margin-top: 4rem;
+            background: #f1f5f9;
+            color: #94a3b8;
+        }
     </style>
 </head>
 <body>
-    <h1>To-Do List Application</h1>
-    <input type="text" id="task-input" placeholder="Add a new task" />
-    <button id="add-task">Add Task</button>
-    <div id="task-list"></div>
-    <script>
-        const taskInput = document.getElementById('task-input');
-        const addTaskButton = document.getElementById('add-task');
-        const taskList = document.getElementById('task-list');
-        let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
-        function renderTasks() {
-            taskList.innerHTML = '';
-            tasks.forEach((task, index) => {
-                const taskItem = document.createElement('div');
-                taskItem.textContent = task.text;
-                if (task.completed) {
-                    taskItem.classList.add('completed');
-                }
-                const completeButton = document.createElement('button');
-                completeButton.textContent = 'Complete';
-                completeButton.onclick = () => toggleTaskCompletion(index);
-                const deleteButton = document.createElement('button');
-                deleteButton.textContent = 'Delete';
-                deleteButton.onclick = () => deleteTask(index);
-                taskItem.appendChild(completeButton);
-                taskItem.appendChild(deleteButton);
-                taskList.appendChild(taskItem);
-            });
-        }
+    <header>
+        <h1>Inspiración Digital</h1>
+        <p>Aprende a crear contenido que realmente impacte.</p>
+    </header>
 
-        function addTask() {
-            const taskText = taskInput.value.trim();
-            if (taskText !== '') {
-                tasks.push({ text: taskText, completed: false });
-                taskInput.value = '';
-                saveTasks();
-                renderTasks();
-            }
-        }
+    <div class="container">
+        <section class="blog-grid">
+            
+            <article class="card">
+                <div class="card-img" style="background: linear-gradient(135deg, #6366f1, #a855f7);">
+                    IMAGEN DESTACADA
+                </div>
+                <div class="card-content">
+                    <span class="category">DISEÑO</span>
+                    <h2>Psicología del Color en Blogs</h2>
+                    <p>Descubre cómo los colores que eliges afectan el tiempo que tus usuarios pasan leyendo tus artículos.</p>
+                    <a href="#" class="btn-leer">Leer más →</a>
+                </div>
+            </article>
 
-        function toggleTaskCompletion(index) {
-            tasks[index].completed = !tasks[index].completed;
-            saveTasks();
-            renderTasks();
-        }
+            <article class="card">
+                <div class="card-img" style="background: linear-gradient(135deg, #3b82f6, #2dd4bf);">
+                    IMAGEN DESTACADA
+                </div>
+                <div class="card-content">
+                    <span class="category">ESTRATEGIA</span>
+                    <h2>Títulos que Generan Clics</h2>
+                    <p>No es clickbait, es arte. Aprende la fórmula para escribir encabezados que nadie pueda ignorar.</p>
+                    <a href="#" class="btn-leer">Leer más →</a>
+                </div>
+            </article>
 
-        function deleteTask(index) {
-            tasks.splice(index, 1);
-            saveTasks();
-            renderTasks();
-        }
+            <article class="card">
+                <div class="card-img" style="background: linear-gradient(135deg, #f59e0b, #ef4444);">
+                    IMAGEN DESTACADA
+                </div>
+                <div class="card-content">
+                    <span class="category">SEO</span>
+                    <h2>Optimización en 2026</h2>
+                    <p>Lo que Google busca hoy en día no es cantidad, sino calidad y velocidad de respuesta. Te explicamos por qué.</p>
+                    <a href="#" class="btn-leer">Leer más →</a>
+                </div>
+            </article>
 
-        function saveTasks() {
-            localStorage.setItem('tasks', JSON.stringify(tasks));
-        }
+        </section>
+    </div>
 
-        addTaskButton.addEventListener('click', addTask);
-        renderTasks();
-    </script>
+    <footer>
+        <p>&copy; 2026 Mi Blog Inspiración. Todos los derechos reservados.</p>
+    </footer>
+
 </body>
 </html>
