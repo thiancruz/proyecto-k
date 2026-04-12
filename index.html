@@ -5,22 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Blog Deportivo Interactivo</title>
   <style>
-    /* Variables de tema */
     :root {
-      --bg: #121212;
-      --bg-card: #1e1e1e;
-      --text: #e0e0e0;
-      --accent: #bb86fc;
-      --accent-hover: #9966cc;
-      --border: #333;
+      --bg: linear-gradient(135deg, #0f0f14, #1c1c2c, #220c40);
+      --bg-card: #1e1e2e;
+      --text: #f0f0ff;
+      --accent: #8a6bff;
+      --accent-hover: #6a4bd6;
+      --border: #3a3a4a;
+      --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.4);
     }
     [data-theme="light"] {
-      --bg: #f5f5f5;
+      --bg: linear-gradient(135deg, #f4f4ff, #e6f0ff, #d8e6ff);
       --bg-card: #ffffff;
-      --text: #212121;
-      --accent: #6200ee;
-      --accent-hover: #3700b3;
-      --border: #ccc;
+      --text: #1a1a2a;
+      --accent: #5b40b8;
+      --accent-hover: #402e80;
+      --border: #d0d0e0;
     }
 
     * {
@@ -29,11 +29,11 @@
       box-sizing: border-box;
     }
     body {
-      background-color: var(--bg);
+      background: var(--bg);
       color: var(--text);
       font-family: "Segoe UI", sans-serif;
-      line-height: 1.6;
-      transition: background-color 0.3s, color 0.3s;
+      min-height: 100vh;
+      transition: background 0.4s;
     }
     a {
       color: var(--accent);
@@ -44,60 +44,74 @@
     }
 
     header {
-      padding: 1.5rem 2rem;
+      padding: 1.8rem 2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
+      background: rgba(14, 14, 24, 0.8);
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
     header h1 {
-      font-size: 1.8rem;
+      font-size: 2rem;
       color: var(--accent);
+      font-weight: 700;
     }
 
     .theme-toggle {
-      padding: 7px 14px;
+      padding: 8px 16px;
       background: var(--accent);
-      color: black;
+      color: #fff;
       border: none;
-      border-radius: 8px;
+      border-radius: 24px;
       cursor: pointer;
       font-weight: 600;
-      transition: background 0.2s;
+      font-size: 0.9rem;
+      transition: all 0.2s;
     }
     .theme-toggle:hover {
       background: var(--accent-hover);
+      transform: scale(1.03);
     }
 
     main {
-      max-width: 1000px;
+      max-width: 1100px;
       margin: 0 auto;
       padding: 2rem;
     }
+
     .hero {
       text-align: center;
-      margin-bottom: 2.5rem;
+      margin-bottom: 3rem;
     }
     .hero h2 {
-      font-size: 2.2rem;
-      margin-bottom: 0.5rem;
+      font-size: 2.4rem;
+      margin-bottom: 0.6rem;
+      background: linear-gradient(90deg, #8a6bff, #ff6fdb);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
     .hero p {
       font-size: 1.1rem;
       opacity: 0.9;
     }
 
-    section {
-      margin-bottom: 3rem;
-    }
-
     .card {
       background: var(--bg-card);
-      border-radius: 12px;
-      padding: 1.5rem;
-      margin-bottom: 1.2rem;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      border-radius: 16px;
+      padding: 1.6rem;
+      margin-bottom: 1.6rem;
+      box-shadow: var(--shadow-card);
       border: 1px solid var(--border);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 32px rgba(0, 0, 0, 0.4);
     }
     .card h3 {
       margin-bottom: 0.8rem;
@@ -105,49 +119,157 @@
     }
     .card img {
       width: 100%;
-      max-height: 280px;
+      max-height: 300px;
       object-fit: cover;
-      border-radius: 8px;
-      margin: 0.8rem 0;
+      border-radius: 12px;
+      margin: 1rem 0;
       border: 1px solid var(--border);
     }
     .card video {
       width: 100%;
-      border-radius: 8px;
-      margin: 0.8rem 0;
+      border-radius: 12px;
+      margin: 1rem 0;
       border: 1px solid var(--border);
     }
 
-    .interactivo {
+    /* SECCIÓN DE COMENTARIOS INTERACTIVOS (CARDS FLIP) */
+    .comments-section {
+      margin-top: 2rem;
       text-align: center;
     }
-    .btn-like {
-      padding: 8px 20px;
-      background: var(--accent);
-      color: black;
-      border: none;
-      border-radius: 20px;
-      cursor: pointer;
-      font-size: 1rem;
+    .comments-title {
+      font-size: 1.8rem;
+      margin-bottom: 1.4rem;
+      color: var(--accent);
+    }
+
+    .comments-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.2rem;
       margin-top: 1rem;
-      transition: transform 0.1s, background 0.2s;
     }
-    .btn-like:hover {
-      background: var(--accent-hover);
-      transform: scale(1.05);
+
+    .comment-card {
+      position: relative;
+      width: 170px;
+      height: 170px;
+      margin: 0 auto;
+      perspective: 1000px;
     }
-    .like-count {
-      display: block;
-      margin-top: 0.5rem;
+    .comment-card-inner {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.4s cubic-bezier(0.2, 0.6, 0.4, 1);
+      transform-style: preserve-3d;
+    }
+    .comment-card.flipped .comment-card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .comment-card-front,
+    .comment-card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 16px;
+      backface-visibility: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 0.8rem;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+      overflow-y: hidden;
+    }
+
+    .comment-card-front {
+      background: var(--bg-card);
+      cursor: pointer;
+      text-align: center;
+    }
+    .comment-card-front img {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 0.6rem;
+      border: 3px solid var(--accent);
+    }
+    .comment-card-front .name {
+      font-weight: 600;
+      margin-bottom: 0.2rem;
       font-size: 0.9rem;
-      opacity: 0.8;
+    }
+    .comment-card-front .role {
+      font-size: 0.75rem;
+      opacity: 0.7;
+    }
+
+    .comment-card-back {
+      background: var(--bg-card);
+      color: var(--text);
+      transform: rotateY(180deg);
+      text-align: left;
+      justify-content: center;
+      padding: 1rem;
+      overflow-y: auto;
+      font-size: 0.9rem;
+      scrollbar-width: thin;
+      scrollbar-color: var(--accent) var(--border);
+    }
+    .comment-card-back::-webkit-scrollbar {
+      width: 6px;
+    }
+    .comment-card-back::-webkit-scrollbar-thumb {
+      background: var(--accent);
+      border-radius: 3px;
+    }
+
+    .add-comment-form {
+      margin-top: 2rem;
+      padding: 1.4rem;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: rgba(30, 30, 46, 0.6);
+    }
+    .add-comment-form h3 {
+      margin-bottom: 0.8rem;
+      color: var(--accent);
+    }
+    .add-comment-form input,
+    .add-comment-form textarea {
+      width: 100%;
+      padding: 0.8rem;
+      margin-bottom: 0.6rem;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--text);
+      font-size: 0.95rem;
+    }
+    .add-comment-form button {
+      padding: 0.8rem 1.6rem;
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 24px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+    .add-comment-form button:hover {
+      background: var(--accent-hover);
+      transform: scale(1.02);
     }
 
     footer {
       text-align: center;
-      padding: 1.5rem;
-      border-top: 1px solid var(--border);
+      padding: 2rem 2rem 1.5rem;
       margin-top: 3rem;
+      border-top: 1px solid var(--border);
       font-size: 0.9rem;
       opacity: 0.7;
     }
@@ -159,7 +281,7 @@
         align-items: flex-start;
       }
       .hero h2 {
-        font-size: 1.8rem;
+        font-size: 2rem;
       }
     }
   </style>
@@ -174,11 +296,11 @@
   <main>
 
     <section class="hero">
-      <h2>Bienvenido a mi blog deportivo</h2>
-      <p>Relatos, reflexiones y consejos sobre la pasión por el deporte, la motivación y la superación.</p>
+      <h2>Comparte tu historia deportiva</h2>
+      <p>Relatos, motivaciones, desmotivaciones y experiencias reales de deportistas como tú.</p>
     </section>
 
-    <!-- Entrada 1: Historia del deportista -->
+    <!-- Entrada de contenido general (ejemplo) -->
     <section class="entrada-1">
       <div class="card">
         <h3>Mi historia con la esgrima</h3>
@@ -186,42 +308,72 @@
         <img src="https://source.unsplash.com/featured/?fencing,sport,athlete" alt="Imagen de esgrima" />
         <p>Pero después de un golpe duro en mi vida (la pérdida de mi padre), la desmotivación se apoderó de mí. Cada entrenamiento me pesaba más, y al final decidí dejar el deporte.</p>
         <p>Aquí te cuento esa historia, cómo me recuperé y qué aprendí sobre la motivación deportiva.</p>
-
-        <div class="interactivo">
-          <button id="btnLike1" class="btn-like">¿Te inspiró esta historia? Dale like</button>
-          <span class="like-count" id="likes1">0 me gusta</span>
-        </div>
       </div>
     </section>
 
-    <!-- Entrada 2: Video explicativo -->
-    <section class="entrada-2">
+    <!-- Entrada de video -->
+    <section class="video-section">
       <div class="card">
         <h3>Video explicativo: motivación y desmotivación deportiva</h3>
-        <p>Mira este video donde explico de forma clara cómo influyen los factores externos e internos en el rendimiento del deportista.</p>
-        <!-- Video externo de ejemplo (puedes cambiar la URL) -->
-        <video controls>
+        <p>Conoce mejor cómo influyen los factores externos e internos en el rendimiento del deportista.</p>
+        <video controls style="width:100%;">
           <source src="https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4" type="video/mp4" />
           Tu navegador no soporta el elemento de video.
         </video>
       </div>
     </section>
 
-    <!-- Entrada 3: Interacción con el usuario -->
-    <section class="entrada-3">
-      <div class="card">
-        <h3>Comparte tu experiencia</h3>
-        <p>¿Tú también has pasado por momentos de desmotivación deportiva? Déjame un comentario corto y cuéntame qué te ayudó a seguir o a detenerte.</p>
-        <input type="text" id="userComment" placeholder="Escribe tu experiencia aquí..." style="display:block; width:100%; padding:0.8rem; margin:0.5rem 0; border-radius:8px; border:1px solid var(--border); background:var(--bg-card); color:var(--text);" />
-        <button id="btnSubmitComment" class="btn-like">Enviar comentario</button>
-        <div id="commentsList" style="margin-top:1rem; font-size:0.95rem; max-height:200px; overflow-y:auto; padding:0.5rem; border-radius:8px; border:1px solid var(--border);background:var(--bg-card);"></div>
+    <!-- SECCIÓN DE COMENTARIOS / EXPERIENCIAS CON IMÁGENES QUE SE DESPLIEGAN -->
+    <section class="comments-section" id="commentsSection">
+      <h2 class="comments-title">Relatos y comentarios de los lectores</h2>
+
+      <div class="comments-grid" id="commentsGrid">
+        <!-- Cada comentario: imagen al frente, historia al reverso -->
+        <!-- Ejemplos iniciales -->
+        <div class="comment-card">
+          <div class="comment-card-inner">
+            <div class="comment-card-front">
+              <img src="https://i.pravatar.cc/150?u=1" alt="Usuario 1" />
+              <div class="name">Carolina M.</div>
+              <div class="role">Corredora</div>
+            </div>
+            <div class="comment-card-back">
+              <strong>Carolina M. – Corredora</strong><br><br>
+              Empecé a correr por salud, pero luego se convirtió en mi escape. La presión por mejorar tiempos me desmotivó, hasta que decidí volver a correr solo por placer.
+            </div>
+          </div>
+        </div>
+
+        <div class="comment-card">
+          <div class="comment-card-inner">
+            <div class="comment-card-front">
+              <img src="https://i.pravatar.cc/150?u=2" alt="Usuario 2" />
+              <div class="name">Andrés R.</div>
+              <div class="role">Esgrimista</div>
+            </div>
+            <div class="comment-card-back">
+              <strong>Andrés R. – Esgrimista</strong><br><br>
+              Practicaba esgrima desde los 10 años. La muerte de mi padre me quitó las ganas de entrenar. Años después volví al deporte, pero como coach, y encontré una nueva motivación.
+            </div>
+          </div>
+        </div>
       </div>
+
+      <!-- FORMULARIO PARA AÑADIR NUEVO COMENTARIO -->
+      <section class="add-comment-form">
+        <h3>Comparte tu historia</h3>
+        <input type="text" id="userName" placeholder="Tu nombre" required />
+        <input type="text" id="userRole" placeholder="Tu deporte / rol (ej. futbolista, entrenador)" />
+        <input type="text" id="userAvatar" placeholder="URL de tu foto (opcional)" />
+        <textarea id="userStory" rows="3" placeholder="Cuéntanos tu experiencia..." required></textarea>
+        <button id="btnSubmitComment">Compartir mi historia</button>
+      </section>
     </section>
 
   </main>
 
   <footer>
-    <p>Blog creado con HTML, CSS y JavaScript • © 2026</p>
+    <p>Blog deportivo interactivo con comentarios de usuarios • © 2026</p>
   </footer>
 
   <script>
@@ -229,7 +381,6 @@
     const html = document.documentElement;
     const btnTheme = document.getElementById("themeToggle");
 
-    // Verificar preferencia del sistema o del usuario
     const userPref = localStorage.getItem("theme");
     if (userPref === "light") {
       html.setAttribute("data-theme", "light");
@@ -249,28 +400,65 @@
       }
     });
 
-    // LIKE EN LA ENTRADA 1
-    let likes1 = 0;
-
-    document.getElementById("btnLike1").addEventListener("click", function () {
-      likes1++;
-      document.getElementById("likes1").textContent = likes1 + " me gusta";
+    // FLIP DE LAS TARJETAS AL HACER CLIC EN LA IMAGEN (front)
+    document.addEventListener("click", function (e) {
+      const front = e.target.closest(".comment-card-front");
+      if (front) {
+        const card = front.closest(".comment-card");
+        card.classList.toggle("flipped");
+      } else if (!e.target.closest(".comment-card-back")) {
+        // Cerrar si se hace clic fuera del reverso
+        const allCards = document.querySelectorAll(".comment-card.flipped");
+        allCards.forEach(c => c.classList.remove("flipped"));
+      }
     });
 
-    // COMENTARIOS INTERACTIVOS
-    const inputComment = document.getElementById("userComment");
+    // AÑADIR NUEVO COMENTARIO DINÁMICAMENTE
     const btnSubmit = document.getElementById("btnSubmitComment");
-    const commentsList = document.getElementById("commentsList");
+    const grid = document.getElementById("commentsGrid");
 
     btnSubmit.addEventListener("click", function () {
-      const text = inputComment.value.trim();
-      if (text) {
-        const p = document.createElement("p");
-        p.style.margin = "0.3rem 0";
-        p.textContent = "– \"" + text + "\"";
-        commentsList.appendChild(p);
-        inputComment.value = "";
+      const name = document.getElementById("userName").value.trim();
+      const role = document.getElementById("userRole").value.trim();
+      let avatar = document.getElementById("userAvatar").value.trim();
+      const story = document.getElementById("userStory").value.trim();
+
+      if (!name || !story) {
+        alert("Por favor completa al menos tu nombre y tu historia.");
+        return;
       }
+
+      // Si no hay avatar, usar uno por defecto
+      if (!avatar) {
+        avatar = "https://i.pravatar.cc/150?u=" + Date.now();
+      }
+
+      // Crear el HTML de la nueva tarjeta
+      const cardHTML = `
+        <div class="comment-card">
+          <div class="comment-card-inner">
+            <div class="comment-card-front">
+              <img src="${avatar}" alt="${name}" />
+              <div class="name">${name}</div>
+              <div class="role">${role || "Usuario"}</div>
+            </div>
+            <div class="comment-card-back">
+              <strong>${name} – ${role || "Usuario"}</strong><br><br>
+              ${story}
+            </div>
+          </div>
+        </div>
+      `;
+
+      const div = document.createElement("div");
+      div.innerHTML = cardHTML;
+      grid.appendChild(div.firstElementChild);
+
+      // Limpiar formulario
+      document.getElementById("userName").value = "";
+      document.getElementById("userRole").value = "";
+      document.getElementById("userAvatar").value = "";
+      document.getElementById("userStory").value = "";
     });
   </script>
 
