@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SUSTRATO </title>
+  <title>SUSTRATO - El Peso Invisible</title>
   <style>
     :root {
       --bg: linear-gradient(135deg, #0f0f14, #1c1c2c, #220c40);
@@ -11,8 +11,8 @@
       --text: #f0f0ff;
       --accent: #8a6bff;
       --accent-hover: #6a4bd6;
-      --border: #3a3a4a;
-      --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.4);
+      --border: rgba(255, 255, 255, 0.1);
+      --shadow-card: 0 15px 35px rgba(0, 0, 0, 0.5);
     }
     [data-theme="light"] {
       --bg: linear-gradient(135deg, #f4f4ff, #e6f0ff, #d8e6ff);
@@ -23,468 +23,264 @@
       --border: #d0d0e0;
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       background: var(--bg);
       color: var(--text);
-      font-family: "Segoe UI", sans-serif;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
       min-height: 100vh;
       transition: background 0.4s;
-    }
-    a {
-      color: var(--accent);
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
+      overflow-x: hidden;
     }
 
     header {
-      padding: 1.8rem 2rem;
+      padding: 1.5rem 2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-      background: rgba(14, 14, 24, 0.8);
+      backdrop-filter: blur(15px);
+      background: rgba(14, 14, 24, 0.7);
       position: sticky;
       top: 0;
-      z-index: 100;
-    }
-    header h1 {
-      font-size: 2rem;
-      color: var(--accent);
-      font-weight: 700;
-    }
-
-    .theme-toggle {
-      padding: 8px 16px;
-      background: var(--accent);
-      color: #fff;
-      border: none;
-      border-radius: 24px;
-      cursor: pointer;
-      font-weight: 600;
-      font-size: 0.9rem;
-      transition: all 0.2s;
-    }
-    .theme-toggle:hover {
-      background: var(--accent-hover);
-      transform: scale(1.03);
-    }
-
-    main {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 2rem;
+      z-index: 1000;
+      border-bottom: 1px solid var(--border);
     }
 
     .hero {
       text-align: center;
-      margin-bottom: 3rem;
+      padding: 4rem 2rem;
     }
     .hero h2 {
-      font-size: 2.4rem;
-      margin-bottom: 0.6rem;
+      font-size: clamp(2rem, 5vw, 3.5rem);
       background: linear-gradient(90deg, #8a6bff, #ff6fdb);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    .hero p {
-      font-size: 1.1rem;
-      opacity: 0.9;
+      margin-bottom: 1rem;
+      letter-spacing: -1px;
     }
 
-    .card {
-      background: var(--bg-card);
-      border-radius: 16px;
-      padding: 1.6rem;
-      margin-bottom: 1.6rem;
-      box-shadow: var(--shadow-card);
-      border: 1px solid var(--border);
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-    .card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 16px 32px rgba(0, 0, 0, 0.4);
-    }
-    .card h3 {
-      margin-bottom: 0.8rem;
-      color: var(--accent);
-    }
-    .card img {
-      width: 100%;
-      max-height: 300px;
-      object-fit: cover;
-      border-radius: 12px;
-      margin: 1rem 0;
-      border: 1px solid var(--border);
-    }
-    .card video {
-      width: 100%;
-      border-radius: 12px;
-      margin: 1rem 0;
-      border: 1px solid var(--border);
-    }
-
-    /* SECCIÓN DE COMENTARIOS INTERACTIVOS (CARDS FLIP) */
-    .comments-section {
-      margin-top: 2rem;
-      text-align: center;
-    }
-    .comments-title {
-      font-size: 1.8rem;
-      margin-bottom: 1.4rem;
-      color: var(--accent);
-    }
-
+    /* GRID DE COMENTARIOS MEJORADO */
     .comments-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.2rem;
-      margin-top: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2.5rem;
+      padding: 2rem;
+      perspective: 1500px;
     }
 
+    /* TARJETA DINÁMICA (TAMAÑO MÁS GRANDE) */
     .comment-card {
+      height: 420px; /* Más alta para que luzca la foto */
+      cursor: pointer;
       position: relative;
-      width: 170px;
-      height: 170px;
-      margin: 0 auto;
-      perspective: 1000px;
     }
+
     .comment-card-inner {
-      position: absolute;
+      position: relative;
       width: 100%;
       height: 100%;
-      transition: transform 0.4s cubic-bezier(0.2, 0.6, 0.4, 1);
+      transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       transform-style: preserve-3d;
     }
+
     .comment-card.flipped .comment-card-inner {
       transform: rotateY(180deg);
     }
 
-    .comment-card-front,
-    .comment-card-back {
+    .comment-card-front, .comment-card-back {
       position: absolute;
       width: 100%;
       height: 100%;
-      border-radius: 16px;
       backface-visibility: hidden;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      padding: 0.8rem;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
       border: 1px solid var(--border);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-      overflow-y: hidden;
     }
 
+    /* FRENTE: LA IMAGEN ES LA PROTAGONISTA */
     .comment-card-front {
       background: var(--bg-card);
-      cursor: pointer;
-      text-align: center;
-    }
-    .comment-card-front img {
-      width: 70px;
-      height: 70px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-bottom: 0.6rem;
-      border: 3px solid var(--accent);
-    }
-    .comment-card-front .name {
-      font-weight: 600;
-      margin-bottom: 0.2rem;
-      font-size: 0.9rem;
-    }
-    .comment-card-front .role {
-      font-size: 0.75rem;
-      opacity: 0.7;
+      display: flex;
+      flex-direction: column;
     }
 
+    .comment-card-front img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(30%) brightness(0.8);
+      transition: 0.5s ease;
+    }
+
+    .comment-card:hover .comment-card-front img {
+      filter: grayscale(0%) brightness(1);
+      transform: scale(1.05);
+    }
+
+    .info-overlay {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      padding: 2rem 1.5rem 1.5rem;
+      background: linear-gradient(transparent, rgba(0,0,0,0.9));
+      color: white;
+    }
+
+    .info-overlay .name { font-size: 1.5rem; font-weight: 800; }
+    .info-overlay .role { font-size: 0.9rem; opacity: 0.8; text-transform: uppercase; letter-spacing: 2px; }
+
+    /* REVERSO: LA HISTORIA */
     .comment-card-back {
       background: var(--bg-card);
-      color: var(--text);
       transform: rotateY(180deg);
-      text-align: left;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
       justify-content: center;
-      padding: 1rem;
-      overflow-y: auto;
-      font-size: 0.9rem;
-      scrollbar-width: thin;
-      scrollbar-color: var(--accent) var(--border);
-    }
-    .comment-card-back::-webkit-scrollbar {
-      width: 6px;
-    }
-    .comment-card-back::-webkit-scrollbar-thumb {
-      background: var(--accent);
-      border-radius: 3px;
+      align-items: center;
+      text-align: center;
     }
 
+    .comment-card-back p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      font-style: italic;
+    }
+
+    /* FORMULARIO */
     .add-comment-form {
-      margin-top: 2rem;
-      padding: 1.4rem;
-      border-radius: 16px;
+      max-width: 600px;
+      margin: 4rem auto;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 2rem;
+      border-radius: 24px;
       border: 1px solid var(--border);
-      background: rgba(30, 30, 46, 0.6);
     }
-    .add-comment-form h3 {
-      margin-bottom: 0.8rem;
-      color: var(--accent);
-    }
-    .add-comment-form input,
-    .add-comment-form textarea {
+
+    input, textarea, button {
       width: 100%;
-      padding: 0.8rem;
-      margin-bottom: 0.6rem;
-      border-radius: 8px;
+      margin-bottom: 1rem;
+      padding: 1rem;
+      border-radius: 12px;
       border: 1px solid var(--border);
       background: var(--bg-card);
       color: var(--text);
-      font-size: 0.95rem;
     }
-    .add-comment-form button {
-      padding: 0.8rem 1.6rem;
+
+    button {
       background: var(--accent);
-      color: white;
-      border: none;
-      border-radius: 24px;
+      font-weight: bold;
       cursor: pointer;
-      font-weight: 600;
-      transition: all 0.2s;
-    }
-    .add-comment-form button:hover {
-      background: var(--accent-hover);
-      transform: scale(1.02);
+      border: none;
+      transition: 0.3s;
     }
 
-    footer {
-      text-align: center;
-      padding: 2rem 2rem 1.5rem;
-      margin-top: 3rem;
-      border-top: 1px solid var(--border);
-      font-size: 0.9rem;
-      opacity: 0.7;
-    }
+    button:hover { background: var(--accent-hover); transform: translateY(-2px); }
 
-    @media (max-width: 768px) {
-      header {
-        flex-direction: column;
-        gap: 0.8rem;
-        align-items: flex-start;
-      }
-      .hero h2 {
-        font-size: 2rem;
-      }
-    }
+    .theme-toggle { width: auto; font-size: 0.8rem; padding: 0.5rem 1rem; }
   </style>
 </head>
 <body>
 
   <header>
-    <h1>SUSTRATO:Explorando las raices del peso invisible</h1>
-    <button id="themeToggle" class="theme-toggle">Cambiar a tema claro</button>
+    <h1>SUSTRATO</h1>
+    <button id="themeToggle" class="theme-toggle">Tema Claro</button>
   </header>
 
   <main>
-
     <section class="hero">
-      <h2>COMPARTE TU HISTORIA DEPORTIVA</h2>
-      <p>Relatos, motivaciones, desmotivaciones y experiencias reales de deportistas como tú.</p>
+      <h2>EL PESO INVISIBLE</h2>
+      <p>Cuando el cuerpo puede, pero la mente se detiene. Historias reales de deportistas.</p>
     </section>
 
-    <!-- Entrada de contenido general (ejemplo) -->
-    <section class="entrada-1">
-      <div class="hero">
-        <h3>MUROS MENTALES</h3>
-        <p>"Entrenaste el cuerpo, pero nadie te enseñó qué hacer cuando la mente dice basta. Este es el espacio para los que han perdido las ganas, para los que compiten contra el vacío y para entender que parar también es parte del proceso."</p>
-        <img src="2.jpeg" />
-      </div>
-    </section>
-
-    <!-- Entrada de video -->
-    <section class="video-section">
-      <div class="card">
-        <h3>Video explicativo: motivación y desmotivación deportiva</h3>
-        <p>Conoce mejor cómo influyen los factores externos e internos en el rendimiento del deportista.</p>
-        <video controls style="width:100%;">
-          <source src="https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4" type="video/mp4" />
-          Tu navegador no soporta el elemento de video.
-        </video>
-      </div>
-    </section>
-
-    <!-- SECCIÓN DE COMENTARIOS / EXPERIENCIAS CON IMÁGENES QUE SE DESPLIEGAN -->
-    <section class="comments-section" id="commentsSection">
-      <h2 class="comments-title">Relatos y comentarios de los lectores</h2>
-
-      <div class="comments-grid" id="commentsGrid">
-        <!-- Cada comentario: imagen al frente, historia al reverso -->
-        <!-- Ejemplos iniciales -->
-        <div class="comment-card">
-          <div class="comment-card-inner">
-            <div class="comment-card-front">
-              <img src="SEBAS A.jpeg" alt="Usuario 1" />
+    <div class="comments-grid" id="commentsGrid">
+      
+      <div class="comment-card">
+        <div class="comment-card-inner">
+          <div class="comment-card-front">
+            <img src="SEBAS A.jpeg" alt="Sebastian">
+            <div class="info-overlay">
               <div class="name">Sebastian A.</div>
-              <div class="role">BOXEADOR</div>
-            </div>
-            <div class="comment-card-back">
-              <strong>Sebastian A. – BOXEADOR</strong><br><br>
-              Empecé a correr por salud, pero luego se convirtió en mi escape. La presión por mejorar tiempos me desmotivó, hasta que decidí volver a correr solo por placer.
+              <div class="role">Boxeador</div>
             </div>
           </div>
-        </div>
-        <div class="comment-card">
-          <div class="comment-card-inner">
-            <div class="comment-card-front">
-              <img src="SEBAS C.jpeg" alt="Usuario 2" />
-              <div class="name">Sebastian C.</div>
-              <div class="role">CORREDOR</div>
-            </div>
-            <div class="comment-card-back">
-              <strong>Sebastian C. – CORREDOR</strong><br><br>
-              Practicaba esgrima desde los 10 años. La muerte de mi padre me quitó las ganas de entrenar. Años después volví al deporte, pero como coach, y encontré una nueva motivación.
-            </div>
-          </div>
-        </div>
-        <div class="comment-card">
-          <div class="comment-card-inner">
-            <div class="comment-card-front">
-              <img src="SEBAS A.jpeg" alt="Usuario 2" />
-              <div class="name">Eva P.</div>
-              <div class="role">RUGBISTA</div>
-            </div>
-            <div class="comment-card-back">
-              <strong>Eva P. – RUGBISTA</strong><br><br>
-              Practicaba esgrima desde los 10 años. La muerte de mi padre me quitó las ganas de entrenar. Años después volví al deporte, pero como coach, y encontré una nueva motivación.
-            </div>
-          </div>
-        </div>
-
-        <div class="comment-card">
-          <div class="comment-card-inner">
-            <div class="comment-card-front">
-              <img src="KATERIN A.jpeg" alt="Usuario 2" />
-              <div class="name">Katerin A.</div>
-              <div class="role">CANOISTA</div>
-            </div>
-            <div class="comment-card-back">
-              <strong>Katerin A. – CANOISTA</strong><br><br>
-              Practicaba esgrima desde los 10 años. La muerte de mi padre me quitó las ganas de entrenar. Años después volví al deporte, pero como coach, y encontré una nueva motivación.
-            </div>
+          <div class="comment-card-back">
+            <p>"La presión por ganar me quitó el aire. El boxeo pasó de ser mi pasión a ser mi condena, hasta que aprendí que soltar los guantes un tiempo no era rendirse."</p>
           </div>
         </div>
       </div>
 
-      <!-- FORMULARIO PARA AÑADIR NUEVO COMENTARIO -->
-      <section class="add-comment-form">
-        <h3>Comparte tu historia</h3>
-        <input type="text" id="userName" placeholder="Tu nombre" required />
-        <input type="text" id="userRole" placeholder="Tu deporte / rol (ej. futbolista, entrenador)" />
-        <input type="text" id="userAvatar" placeholder="URL de tu foto (opcional)" />
-        <textarea id="userStory" rows="3" placeholder="Cuéntanos tu experiencia..." required></textarea>
-        <button id="btnSubmitComment">Compartir mi historia</button>
-      </section>
-    </section>
+      <div class="comment-card">
+        <div class="comment-card-inner">
+          <div class="comment-card-front">
+            <img src="KATERIN A.jpeg" alt="Katerin">
+            <div class="info-overlay">
+              <div class="name">Katerin A.</div>
+              <div class="role">Canoista</div>
+            </div>
+          </div>
+          <div class="comment-card-back">
+            <p>"En el agua todo fluye, pero hubo meses donde el remo pesaba toneladas. Entender mi desmotivación fue mi mayor victoria olímpica."</p>
+          </div>
+        </div>
+      </div>
 
+    </div>
+
+    <section class="add-comment-form">
+      <h3>Comparte tu experiencia</h3>
+      <input type="text" id="userName" placeholder="Nombre" />
+      <input type="text" id="userRole" placeholder="Deporte" />
+      <textarea id="userStory" rows="4" placeholder="¿Cómo te sientes hoy?"></textarea>
+      <button id="btnSubmitComment">Publicar Relato</button>
+    </section>
   </main>
 
-  <footer>
-    <p>Blog deportivo interactivo con comentarios de usuarios • © 2026</p>
-  </footer>
-
   <script>
-    // CAMBIO DE TEMA CLARO/OSCURO
-    const html = document.documentElement;
+    // Cambio de tema
     const btnTheme = document.getElementById("themeToggle");
-
-    const userPref = localStorage.getItem("theme");
-    if (userPref === "light") {
-      html.setAttribute("data-theme", "light");
-      btnTheme.textContent = "Cambiar a tema oscuro";
-    }
-
     btnTheme.addEventListener("click", () => {
-      const current = html.getAttribute("data-theme");
-      if (current === "light") {
-        html.setAttribute("data-theme", "dark");
-        btnTheme.textContent = "Cambiar a tema claro";
-        localStorage.setItem("theme", "dark");
-      } else {
-        html.setAttribute("data-theme", "light");
-        btnTheme.textContent = "Cambiar a tema oscuro";
-        localStorage.setItem("theme", "light");
-      }
+      const isLight = document.documentElement.getAttribute("data-theme") === "light";
+      document.documentElement.setAttribute("data-theme", isLight ? "dark" : "light");
+      btnTheme.textContent = isLight ? "Tema Claro" : "Tema Oscuro";
     });
 
-    // FLIP DE LAS TARJETAS AL HACER CLIC EN LA IMAGEN (front)
-    document.addEventListener("click", function (e) {
-      const front = e.target.closest(".comment-card-front");
-      if (front) {
-        const card = front.closest(".comment-card");
+    // Delegación de eventos para el Flip
+    document.addEventListener("click", (e) => {
+      const card = e.target.closest(".comment-card");
+      if (card) {
         card.classList.toggle("flipped");
-      } else if (!e.target.closest(".comment-card-back")) {
-        // Cerrar si se hace clic fuera del reverso
-        const allCards = document.querySelectorAll(".comment-card.flipped");
-        allCards.forEach(c => c.classList.remove("flipped"));
       }
     });
 
-    // AÑADIR NUEVO COMENTARIO DINÁMICAMENTE
+    // Agregar nuevo (Lógica básica)
     const btnSubmit = document.getElementById("btnSubmitComment");
-    const grid = document.getElementById("commentsGrid");
+    btnSubmit.addEventListener("click", () => {
+      const name = document.getElementById("userName").value;
+      const role = document.getElementById("userRole").value;
+      const story = document.getElementById("userStory").value;
 
-    btnSubmit.addEventListener("click", function () {
-      const name = document.getElementById("userName").value.trim();
-      const role = document.getElementById("userRole").value.trim();
-      let avatar = document.getElementById("userAvatar").value.trim();
-      const story = document.getElementById("userStory").value.trim();
-
-      if (!name || !story) {
-        alert("Por favor completa al menos tu nombre y tu historia.");
-        return;
-      }
-
-      // Si no hay avatar, usar uno por defecto
-      if (!avatar) {
-        avatar = "https://i.pravatar.cc/150?u=" + Date.now();
-      }
-
-      // Crear el HTML de la nueva tarjeta
-      const cardHTML = `
-        <div class="comment-card">
+      if(name && story) {
+        const newCard = document.createElement("div");
+        newCard.className = "comment-card";
+        newCard.innerHTML = `
           <div class="comment-card-inner">
             <div class="comment-card-front">
-              <img src="${avatar}" alt="${name}" />
-              <div class="name">${name}</div>
-              <div class="role">${role || "Usuario"}</div>
+              <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=500" alt="Atleta">
+              <div class="info-overlay">
+                <div class="name">${name}</div>
+                <div class="role">${role}</div>
+              </div>
             </div>
             <div class="comment-card-back">
-              <strong>${name} – ${role || "Usuario"}</strong><br><br>
-              ${story}
+              <p>"${story}"</p>
             </div>
           </div>
-        </div>
-      `;
-
-      const div = document.createElement("div");
-      div.innerHTML = cardHTML;
-      grid.appendChild(div.firstElementChild);
-
-      // Limpiar formulario
-      document.getElementById("userName").value = "";
-      document.getElementById("userRole").value = "";
-      document.getElementById("userAvatar").value = "";
-      document.getElementById("userStory").value = "";
+        `;
+        document.getElementById("commentsGrid").appendChild(newCard);
+      }
     });
   </script>
-
 </body>
 </html>
