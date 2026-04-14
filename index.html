@@ -197,15 +197,23 @@
     </section>
  </div>
 
-    <style>
-    /* 1. Contenedor para centrar el botón */
-    .contenedor-btn-centrado {
-        display: flex;
-        justify-content: center; /* Centrado horizontal */
-        align-items: center;     /* Centrado vertical (si tuviera altura) */
-        width: 100%;             /* Ocupa todo el ancho */
-        margin: 40px 0;          /* Espacio arriba y abajo del botón */
-    }
+   /* NUEVO ESTILO PARA LA IMAGEN VERTICAL Y MÁS GRANDE */
+.link-k-style img {
+    width: 140px;           /* Ancho de la imagen (más grande) */
+    aspect-ratio: 9/16;    /* Proporción vertical perfecta */
+    border-radius: 12px;   /* Esquinas ligeramente redondeadas (no circular) */
+    object-fit: cover;
+    margin-bottom: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Borde sutil al inicio */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+    transition: transform 0.4s ease, border-color 0.4s ease;
+}
+
+/* Efecto hover específico para la imagen (Opcional) */
+.link-k-style:hover img {
+    border-color: #00f2ff; /* El borde brilla al pasar el mouse por el botón */
+    transform: scale(1.05); /* La imagen crece un poquito */
+}
 
     /* 2. Estilos de la PRIMERA OPCIÓN (Cyber-Link) */
     .link-k-style {
@@ -329,16 +337,19 @@
 <div class="grid-botones-finales">
     <div class="contenedor-btn-centrado">
         <a href="https://kahoot.it/challenge/01257134?challenge-id=d0eebf76-6316-40f9-be1b-f6bd0eb73034_1775935000981" class="link-k-style">
+          <img src="psico.jpeg" alt="Experto">
             <p class="titulo-btn">TEST DE AUTODIAGNÓSTICO</p>
-            <p class="desc-btn">Descubre si lo que sientes es fatiga física o el peso invisible de la desmotivación.</p>
+            <p class="desc-btn">Descubre si lo que sientes es fatiga física</p> 
+             <p o el peso invisible de la desmotivación.</p>
         </a>
     </div>
 
     <div class="contenedor-btn-centrado">
         <a href="https://scielo.isciii.es/scielo.php?pid=S1578-84232020000100002&script=sci_arttext" class="link-k-style">
-            <img src="SEBAS C.jpeg" alt="Experto">
+            <img src="icient.jpeg" alt="Experto">
             <p class="titulo-btn">SECCIÓN DE EXPERTO</p>
-            <p class="desc-btn">Artículos y consejos de psicólogos deportivos sobre el agotamiento mental y burnout.</p>
+            <p class="desc-btn">Artículos y consejos de psicólogos deportivos</p>
+              <p sobre el agotamiento mental y burnout.</p>
         </a>
     </div>
 </div>
