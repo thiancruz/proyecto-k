@@ -197,81 +197,17 @@
     </section>
  </div>
 
-   /* NUEVO ESTILO PARA LA IMAGEN VERTICAL Y MÁS GRANDE */
-.link-k-style img {
-    width: 140px;           /* Ancho de la imagen (más grande) */
-    aspect-ratio: 9/16;    /* Proporción vertical perfecta */
-    border-radius: 12px;   /* Esquinas ligeramente redondeadas (no circular) */
-    object-fit: cover;
-    margin-bottom: 15px;
-    border: 1px solid rgba(255, 255, 255, 0.1); /* Borde sutil al inicio */
-    box-shadow: 0 10px 20px rgba(0,0,0,0.4);
-    transition: transform 0.4s ease, border-color 0.4s ease;
-}
 
-/* Efecto hover específico para la imagen (Opcional) */
-.link-k-style:hover img {
-    border-color: #00f2ff; /* El borde brilla al pasar el mouse por el botón */
-    transform: scale(1.05); /* La imagen crece un poquito */
-}
 
-    /* 2. Estilos de la PRIMERA OPCIÓN (Cyber-Link) */
-    .link-k-style {
-        display: inline-flex;
-        align-items: center;
-        text-decoration: none;
-        padding: 18px 40px;
-        background: rgba(255, 255, 255, 0.05); /* --glass */
-        border: 1px solid rgba(255, 255, 255, 0.1); /* --border */
-        border-radius: 50px;
-        color: #fff;
-        
-        /* Asegúrate de que estas fuentes estén cargadas en tu <head> */
-        font-family: 'Syne', sans-serif;
-        font-weight: 800;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        font-size: 0.9rem;
-        
-        transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px); /* Compatibilidad Safari */
-        position: relative;
-        overflow: hidden;
-        
-        /* Evita que el texto se rompa en varias líneas */
-        white-space: nowrap; 
-    }
 
-    /* Efecto Hover (al pasar el mouse) */
-    .link-k-style:hover {
-        border-color: #00f2ff; /* --accent de tu página */
-        box-shadow: 0 0 20px rgba(0, 242, 255, 0.2);
-        transform: translateY(-3px);
-        color: #00f2ff; /* El texto también cambia ligeramente */
-    }
-
-    /* Efecto de brillo interior (pseudo-elemento) */
-    .link-k-style::before {
-        content: '';
-        position: absolute;
-        top: 0; 
-        left: -100%;
-        width: 100%; 
-        height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-        transition: 0.5s;
-    }
-
-    .link-k-style:hover::before {
-        left: 100%;
-    }
+   
 </style>
+    
 
-   <style>
+ <style>
     .grid-botones-finales {
         display: grid;
-        grid-template-columns: repeat(2, 1fr); /* Dos columnas iguales */
+        grid-template-columns: repeat(2, 1fr);
         gap: 20px;
         margin-top: 50px;
     }
@@ -297,18 +233,26 @@
     }
 
     .link-k-style:hover {
-        border-color: #00f2ff; /* Tu color cyan */
+        border-color: #00f2ff;
         background: rgba(0, 242, 255, 0.05);
         transform: translateY(-5px);
     }
 
+    /* ESTILO MODIFICADO: Imagen Vertical y Grande */
     .link-k-style img {
-        width: 80px;
-        height: 80px;
-        border-radius: 50%;
+        width: 140px;           /* Controla el ancho aquí */
+        aspect-ratio: 9/16;    /* Mantiene la proporción vertical */
+        border-radius: 12px;   /* Esquinas redondeadas */
         object-fit: cover;
         margin-bottom: 15px;
-        border: 2px solid #00f2ff;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+        transition: transform 0.4s ease, border-color 0.4s ease;
+    }
+
+    .link-k-style:hover img {
+        border-color: #00f2ff;
+        transform: scale(1.05);
     }
 
     .titulo-btn {
@@ -326,7 +270,6 @@
         line-height: 1.4;
     }
 
-    /* Ajuste para móviles */
     @media (max-width: 768px) {
         .grid-botones-finales {
             grid-template-columns: 1fr;
@@ -337,10 +280,9 @@
 <div class="grid-botones-finales">
     <div class="contenedor-btn-centrado">
         <a href="https://kahoot.it/challenge/01257134?challenge-id=d0eebf76-6316-40f9-be1b-f6bd0eb73034_1775935000981" class="link-k-style">
-          <img src="psico.jpeg" alt="Experto">
+           <img src="psico.jpeg" alt="Experto">
             <p class="titulo-btn">TEST DE AUTODIAGNÓSTICO</p>
-            <p class="desc-btn">Descubre si lo que sientes es fatiga física</p> 
-             <p o el peso invisible de la desmotivación.</p>
+            <p class="desc-btn">Descubre si lo que sientes es fatiga física o el peso invisible de la desmotivación.</p>
         </a>
     </div>
 
@@ -348,8 +290,7 @@
         <a href="https://scielo.isciii.es/scielo.php?pid=S1578-84232020000100002&script=sci_arttext" class="link-k-style">
             <img src="icient.jpeg" alt="Experto">
             <p class="titulo-btn">SECCIÓN DE EXPERTO</p>
-            <p class="desc-btn">Artículos y consejos de psicólogos deportivos</p>
-              <p sobre el agotamiento mental y burnout.</p>
+            <p class="desc-btn">Artículos y consejos de psicólogos deportivos sobre el agotamiento mental y burnout.</p>
         </a>
     </div>
 </div>
