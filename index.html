@@ -195,24 +195,87 @@
         <p style="margin-top: 1rem; font-style: italic; opacity: 0.8;">— Aquí el silencio se convierte en fuerza.</p>
         <img src="2.jpeg" alt="Muros Mentales" />
     </section>
+ </div>
 
-    <div class="boton-bloque-sustrato" onclick="window.location.href='#link-expertos'">
-  <div class="icono-flotante">🧠</div>
-  <div class="contenido-boton">
-    <h3>SECCIÓN DE EXPERTOS</h3>
-    <p>Artículos y consejos de psicólogos deportivos sobre el agotamiento mental y burnout.</p>
-    <span class="https://thiancruz.github.io/">Explorar recursos →</span>
-  </div>
+    <style>
+    /* 1. Contenedor para centrar el botón */
+    .contenedor-btn-centrado {
+        display: flex;
+        justify-content: center; /* Centrado horizontal */
+        align-items: center;     /* Centrado vertical (si tuviera altura) */
+        width: 100%;             /* Ocupa todo el ancho */
+        margin: 40px 0;          /* Espacio arriba y abajo del botón */
+    }
+
+    /* 2. Estilos de la PRIMERA OPCIÓN (Cyber-Link) */
+    .link-k-style {
+        display: inline-flex;
+        align-items: center;
+        text-decoration: none;
+        padding: 18px 40px;
+        background: rgba(255, 255, 255, 0.05); /* --glass */
+        border: 1px solid rgba(255, 255, 255, 0.1); /* --border */
+        border-radius: 50px;
+        color: #fff;
+        
+        /* Asegúrate de que estas fuentes estén cargadas en tu <head> */
+        font-family: 'Syne', sans-serif;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-size: 0.9rem;
+        
+        transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px); /* Compatibilidad Safari */
+        position: relative;
+        overflow: hidden;
+        
+        /* Evita que el texto se rompa en varias líneas */
+        white-space: nowrap; 
+    }
+
+    /* Efecto Hover (al pasar el mouse) */
+    .link-k-style:hover {
+        border-color: #00f2ff; /* --accent de tu página */
+        box-shadow: 0 0 20px rgba(0, 242, 255, 0.2);
+        transform: translateY(-3px);
+        color: #00f2ff; /* El texto también cambia ligeramente */
+    }
+
+    /* Efecto de brillo interior (pseudo-elemento) */
+    .link-k-style::before {
+        content: '';
+        position: absolute;
+        top: 0; 
+        left: -100%;
+        width: 100%; 
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+        transition: 0.5s;
+    }
+
+    .link-k-style:hover::before {
+        left: 100%;
+    }
+</style>
+
+    <div class="contenedor-btn-centrado">
+    <a href="https://kahoot.it/challenge/01257134?challenge-id=d0eebf76-6316-40f9-be1b-f6bd0eb73034_1775935000981" class="link-k-style">
+        TEST DE AUTODIAGNÓSTICO
+      <p>Descubre si lo que sientes es fatiga física o el peso invisible de la desmotivación.</p>
+    </a>
 </div>
 
-<div class="boton-bloque-sustrato" onclick="window.location.href='#link-test'">
-  <div class="icono-flotante">📊</div>
-  <div class="contenido-boton">
-    <h3>TEST DE AUTODIAGNÓSTICO</h3>
-    <p>Descubre si lo que sientes es fatiga física o el peso invisible de la desmotivación.</p>
-    <span class="https://thiancruz.github.io/">Comenzar test →</span>
-  </div>
+<div class="contenedor-btn-centrado">
+    <a href="file:///C:/Users/usuario/Downloads/Dialnet-InfluenciaDeLaMotivacionEnLaActividadFisicaElDepor-10101718.pdf" class="link-k-style">
+        SECCIÓN DE EXPERTO
+     <p>Artículos y consejos de psicólogos deportivos sobre el agotamiento mental y burnout.</p>
+    </a>
 </div>
+  
+
+
 
     <section class="video-card">
         <h3>Video explicativo: motivación y desmotivación deportiva</h3>
