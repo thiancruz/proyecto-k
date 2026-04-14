@@ -1,0 +1,91 @@
+<div id="quiz-container" class="test-card">
+    <div id="question-box">
+        <h3 id="question-text" class="titulo-btn">Cargando pregunta...</h3>
+        <div id="options-container" class="grid-botones-finales"></div>
+    </div>
+    <div id="result-box" style="display:none;">
+        <h2 class="titulo-btn">TU DIAGNÓSTICO</h2>
+        <p id="result-text" class="desc-btn" style="font-size: 1.1rem;"></p>
+        <button onclick="resetQuiz()" class="link-k-style" style="margin-top:20px; cursor:pointer; width:auto;">REPETIR TEST</button>
+    </div>
+</div>
+
+<style>
+    .test-card {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 30px;
+        padding: 40px;
+        max-width: 800px;
+        margin: 40px auto;
+        text-align: center;
+        backdrop-filter: blur(10px);
+    }
+    .option-btn {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: white;
+        padding: 15px;
+        border-radius: 15px;
+        cursor: pointer;
+        transition: 0.3s;
+        font-family: 'Montserrat', sans-serif;
+    }
+    .option-btn:hover {
+        border-color: #00f2ff;
+        background: rgba(0, 242, 255, 0.1);
+    }
+</style>
+
+<script>
+    const questions = [
+        { q: "¿Cómo te sientes al despertar tras 8h de sueño?", a: "Físicamente recuperado, pero sin ganas.", b: "Cuerpo pesado y agotado.", type: "A-Desmotivación" },
+        { q: "¿Qué sientes ante un plan que antes amabas?", a: "Indiferencia o pereza.", b: "Deseo de ir, pero el cuerpo no responde.", type: "A-Desmotivación" },
+        { q: "¿Cuándo es tu energía más baja?", a: "A primera hora (anticipación).", b: "Al final del día (esfuerzo).", type: "A-Desmotivación" },
+        { q: "Al completar una tarea difícil sientes:", a: "Vacío o que no valió la pena.", b: "Satisfacción aunque estés cansado.", type: "A-Desmotivación" }
+    ];
+
+    let currentQ = 0;
+    let scoreA = 0;
+
+    function showQuestion() {
+        if (currentQ < questions.length) {
+            document.getElementById('question-text').innerText = questions[currentQ].q;
+            const container = document.getElementById('options-container');
+            container.innerHTML = `
+                <button class="option-btn" onclick="next(true)">${questions[currentQ].a}</button>
+                <button class="option-btn" onclick="next(false)">${questions[currentQ].b}</button>
+            `;
+        } else {
+            showResult();
+        }
+    }
+
+    function next(isA) {
+        if (isA) scoreA++;
+        currentQ++;
+        showQuestion();
+    }
+
+    function showResult() {
+        document.getElementById('question-box').style.display = 'none';
+        const resBox = document.getElementById('result-box');
+        resBox.style.display = 'block';
+        const resText = document.getElementById('result-text');
+        
+        if (scoreA >= 3) {
+            resText.innerText = "Lo que sientes es EL PESO INVISIBLE. Tu cansancio no es físico, es una falta de propósito o desmotivación mental. Necesitas reconectar con tu 'por qué'.";
+        } else {
+            resText.innerText = "Lo que sientes es FATIGA FÍSICA. Tu cuerpo ha llegado al límite. Necesitas descanso profundo, nutrición y recuperación fisiológica activa.";
+        }
+    }
+
+    function resetQuiz() {
+        currentQ = 0; scoreA = 0;
+        document.getElementById('question-box').style.display = 'block';
+        document.getElementById('result-box').style.display = 'none';
+        showQuestion();
+    }
+
+    showQuestion();
+</script>
