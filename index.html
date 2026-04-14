@@ -260,7 +260,73 @@
     }
 </style>
 
-   <div class="grid-botones-finales">
+   <style>
+    .grid-botones-finales {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* Dos columnas iguales */
+        gap: 20px;
+        margin-top: 50px;
+    }
+
+    .contenedor-btn-centrado {
+        height: 100%;
+    }
+
+    .link-k-style {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        padding: 30px;
+        text-decoration: none;
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        transition: all 0.4s ease;
+        height: 100%;
+        backdrop-filter: blur(10px);
+    }
+
+    .link-k-style:hover {
+        border-color: #00f2ff; /* Tu color cyan */
+        background: rgba(0, 242, 255, 0.05);
+        transform: translateY(-5px);
+    }
+
+    .link-k-style img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 15px;
+        border: 2px solid #00f2ff;
+    }
+
+    .titulo-btn {
+        font-family: 'Syne', sans-serif;
+        font-size: 1.1rem;
+        text-transform: uppercase;
+        color: #00f2ff;
+        margin-bottom: 10px;
+        letter-spacing: 2px;
+    }
+
+    .desc-btn {
+        font-size: 0.85rem;
+        color: #bbb;
+        line-height: 1.4;
+    }
+
+    /* Ajuste para móviles */
+    @media (max-width: 768px) {
+        .grid-botones-finales {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+<div class="grid-botones-finales">
     <div class="contenedor-btn-centrado">
         <a href="https://kahoot.it/challenge/01257134?challenge-id=d0eebf76-6316-40f9-be1b-f6bd0eb73034_1775935000981" class="link-k-style">
             <p class="titulo-btn">TEST DE AUTODIAGNÓSTICO</p>
@@ -276,7 +342,6 @@
         </a>
     </div>
 </div>
-  
 
 
 
