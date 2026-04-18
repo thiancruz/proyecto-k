@@ -585,77 +585,7 @@
     </script>
 </body>
 </html>
-
-    </section>
-
-    <section class="add-comment-form">
-      <h3>Comparte tu historia</h3>
-      <p style="margin-bottom: 1.5rem; opacity: 0.8;">Tu experiencia puede ser el sustrato que ayude a otro atleta a crecer.</p>
-      <input type="text" id="userName" placeholder="Tu nombre" required />
-      <input type="text" id="userRole" placeholder="Tu deporte / rol" />
-      <input type="text" id="userAvatar" placeholder="URL de tu foto (opcional)" />
-      <textarea id="userStory" rows="4" placeholder="¿Cuándo sentiste ese peso invisible?..." required></textarea>
-      <button id="btnSubmitComment">Publicar mi experiencia</button>
-    </section>
-
-  </main>
-
-
-  <script>
-    // TEMA
-    const html = document.documentElement;
-    const btnTheme = document.getElementById("themeToggle");
-    btnTheme.addEventListener("click", () => {
-      const current = html.getAttribute("data-theme");
-      const next = current === "light" ? "dark" : "light";
-      html.setAttribute("data-theme", next);
-      localStorage.setItem("theme", next);
-    });
-
-    // INTERACCION FLIP
-    document.addEventListener("click", function (e) {
-      const card = e.target.closest(".comment-card");
-      if (card) card.classList.toggle("flipped");
-    });
-
-    // AGREGAR COMENTARIO
-    const btnSubmit = document.getElementById("btnSubmitComment");
-    const grid = document.getElementById("commentsGrid");
-
-    btnSubmit.addEventListener("click", function () {
-      const name = document.getElementById("userName").value.trim();
-      const role = document.getElementById("userRole").value.trim();
-      let avatar = document.getElementById("userAvatar").value.trim() || "https://i.pravatar.cc/150?u="+Date.now();
-      const story = document.getElementById("userStory").value.trim();
-
-      if (name && story) {
-        const div = document.createElement("div");
-        div.className = "comment-card";
-        div.innerHTML = `
-          <div class="comment-card-inner">
-            <div class="comment-card-front">
-              <img src="${avatar}" alt="${name}">
-              <div class="front-info">
-                <div class="name">${name}</div>
-                <div class="role">${role || 'Deportista'}</div>
-              </div>
-            </div>
-            <div class="comment-card-back">
-              <strong>HISTORIA DE ${name.toUpperCase()}</strong><br><br>
-              "${story}"
-            </div>
-          </div>
-        `;
-        grid.appendChild(div);
-        // Limpiar
-        document.getElementById("userName").value = "";
-        document.getElementById("userStory").value = "";
-      }
-    });
-  </script>
-<div class="social-wrapper">
-  
-  <a href="https://www.instagram.com/vsebastianarango?igsh=d2hoOXZudXc4Mmxw" target="_blank" class="insta-btn-modern">
+       <a href="https://www.instagram.com/vsebastianarango?igsh=d2hoOXZudXc4Mmxw" target="_blank" class="insta-btn-modern">
     <div class="icon-box">
       <svg viewBox="0 0 512 512" class="insta-svg">
         <defs>
@@ -754,4 +684,75 @@
   transform: scale(1.1);
 }
 </style>
+
+    </section>
+
+    <section class="add-comment-form">
+      <h3>Comparte tu historia</h3>
+      <p style="margin-bottom: 1.5rem; opacity: 0.8;">Tu experiencia puede ser el sustrato que ayude a otro atleta a crecer.</p>
+      <input type="text" id="userName" placeholder="Tu nombre" required />
+      <input type="text" id="userRole" placeholder="Tu deporte / rol" />
+      <input type="text" id="userAvatar" placeholder="URL de tu foto (opcional)" />
+      <textarea id="userStory" rows="4" placeholder="¿Cuándo sentiste ese peso invisible?..." required></textarea>
+      <button id="btnSubmitComment">Publicar mi experiencia</button>
+    </section>
+
+  </main>
+
+
+  <script>
+    // TEMA
+    const html = document.documentElement;
+    const btnTheme = document.getElementById("themeToggle");
+    btnTheme.addEventListener("click", () => {
+      const current = html.getAttribute("data-theme");
+      const next = current === "light" ? "dark" : "light";
+      html.setAttribute("data-theme", next);
+      localStorage.setItem("theme", next);
+    });
+
+    // INTERACCION FLIP
+    document.addEventListener("click", function (e) {
+      const card = e.target.closest(".comment-card");
+      if (card) card.classList.toggle("flipped");
+    });
+
+    // AGREGAR COMENTARIO
+    const btnSubmit = document.getElementById("btnSubmitComment");
+    const grid = document.getElementById("commentsGrid");
+
+    btnSubmit.addEventListener("click", function () {
+      const name = document.getElementById("userName").value.trim();
+      const role = document.getElementById("userRole").value.trim();
+      let avatar = document.getElementById("userAvatar").value.trim() || "https://i.pravatar.cc/150?u="+Date.now();
+      const story = document.getElementById("userStory").value.trim();
+
+      if (name && story) {
+        const div = document.createElement("div");
+        div.className = "comment-card";
+        div.innerHTML = `
+          <div class="comment-card-inner">
+            <div class="comment-card-front">
+              <img src="${avatar}" alt="${name}">
+              <div class="front-info">
+                <div class="name">${name}</div>
+                <div class="role">${role || 'Deportista'}</div>
+              </div>
+            </div>
+            <div class="comment-card-back">
+              <strong>HISTORIA DE ${name.toUpperCase()}</strong><br><br>
+              "${story}"
+            </div>
+          </div>
+        `;
+        grid.appendChild(div);
+        // Limpiar
+        document.getElementById("userName").value = "";
+        document.getElementById("userStory").value = "";
+      }
+    });
+  </script>
+<div class="social-wrapper">
+  
+ 
 </html>
