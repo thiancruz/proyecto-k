@@ -657,4 +657,82 @@
     });
   </script>
 </body>
+  <a href="https://www.instagram.com/vsebastianarango?igsh=d2hoOXZudXc4Mmxw" target="_blank" class="insta-link-moderno">
+  <div class="logo-container">
+    <svg viewBox="0 0 512 512" class="insta-icon">
+      <defs>
+        <linearGradient id="insta-gradient" x1="0%" y1="100%" x2="100%" y2="0%">
+          <stop offset="0%" style="stop-color:#f09433;stop-opacity:1" />
+          <stop offset="25%" style="stop-color:#e6683c;stop-opacity:1" />
+          <stop offset="50%" style="stop-color:#dc2743;stop-opacity:1" />
+          <stop offset="75%" style="stop-color:#cc2366;stop-opacity:1" />
+          <stop offset="100%" style="stop-color:#bc1888;stop-opacity:1" />
+        </linearGradient>
+      </defs>
+      <path d="M256 109.3c47.8 0 53.4.2 72.3 1 17.4.8 26.9 3.7 33.2 6.2 8.3 3.2 14.3 7.1 20.5 13.3 6.2 6.2 10.1 12.1 13.3 20.5 2.5 6.3 5.4 15.8 6.2 33.2 1 18.9 1 24.5 1 72.3s-.2 53.4-1 72.3c-.8 17.4-3.7 26.9-6.2 33.2-3.2 8.3-7.1 14.3-13.3 20.5-6.2 6.2-12.1 10.1-20.5 13.3-6.3 2.5-15.8 5.4-33.2 6.2-18.9 1-24.5 1-72.3 1s-53.4-.2-72.3-1c-17.4-.8-26.9-3.7-33.2-6.2-8.3-3.2-14.3-7.1-20.5-13.3-6.2-6.2-10.1-12.1-13.3-20.5-2.5-6.3-5.4-15.8-6.2-33.2-1-18.9-1-24.5-1-72.3s.2-53.4 1-72.3c.8-17.4 3.7-26.9 6.2-33.2 3.2-8.3 7.1-14.3 13.3-20.5 6.2-6.2 12.1-10.1 20.5-13.3 6.3-2.5 15.8-5.4 33.2-6.2 18.9-1 24.5-1 72.3-1m0-45.4c-48.4 0-54.5.2-73.5 1-19 .9-32 3.9-43.4 8.3-11.8 4.6-21.7 10.7-31.7 20.6-9.9 9.9-16.1 19.9-20.6 31.7-4.4 11.4-7.4 24.4-8.3 43.4-.9 19-1 25.1-1 73.5s.2 54.5 1 73.5c.9 19 3.9 32 8.3 43.4 4.6 11.8 10.7 21.7 20.6 31.7 9.9 9.9 19.9 16.1 31.7 20.6 11.4 4.4 24.4 7.4 43.4 8.3 19 .9 25.1 1 73.5 1s54.5-.2 73.5-1c19-.9 32-3.9 43.4-8.3 11.8-4.6 21.7-10.7 31.7-20.6 9.9-9.9 16.1-19.9 20.6-31.7 4.4-11.4 7.4-24.4 8.3-43.4.9-19 1-25.1 1-73.5s-.2-54.5-1-73.5c-.9-19-3.9-32-8.3-43.4-4.6-11.8-10.7-21.7-20.6-31.7-9.9-9.9-19.9-16.1-31.7-20.6-11.4-4.4-24.4-7.4-43.4-8.3-19-.9-25.1-1-73.5-1z"/>
+    </svg>
+  </div>
+  <span class="nombre-user">Síguenos</span>
+</a>
+
+<style>
+/* Estilos del botón */
+.insta-link-moderno {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  width: fit-content;
+  transition: transform 0.3s ease;
+}
+
+.logo-container {
+  width: 60px;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.05); /* Fondo sutil */
+  border-radius: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.4s ease;
+}
+
+.insta-icon {
+  width: 35px;
+  height: 35px;
+  fill: white; /* Color inicial */
+  transition: fill 0.4s ease;
+}
+
+.nombre-user {
+  margin-top: 8px;
+  color: white;
+  font-family: sans-serif;
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  opacity: 0.6;
+  transition: opacity 0.3s;
+}
+
+/* Efecto al pasar el mouse (Hover) */
+.insta-link-moderno:hover {
+  transform: translateY(-5px); /* Se eleva */
+}
+
+.insta-link-moderno:hover .logo-container {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #bc1888;
+  box-shadow: 0 10px 20px rgba(188, 24, 136, 0.3);
+}
+
+.insta-link-moderno:hover .insta-icon {
+  fill: url(#insta-gradient); /* Cambia al degradado real */
+}
+
+.insta-link-moderno:hover .nombre-user {
+  opacity: 1;
+}
+</style>
 </html>
