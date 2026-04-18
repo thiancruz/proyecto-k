@@ -264,12 +264,11 @@
         <a href="https://kahoot.it/challenge/06162304?challenge-id=d0eebf76-6316-40f9-be1b-f6bd0eb73034_1776475023042" class="link-k-style">
            <img src="psico.jpeg" alt="Experto">
             <p class="titulo-btn">TEST DE AUTODIAGNÓSTICO</p>
-            <p class="desc-btn">Ten en cuenta que esto es una guía y no un diagnóstico profesional.</p>
-
-<p- Mayoría de respuestas "a": Lo más probable es que estés en una buena condición física y mental, disfrutando y recuperándote adecuadamente de tu actividad deportiva.</p>
-<p- Mayoría de respuestas "b": Podrías estar experimentando un leve cansancio físico o mental, o simplemente fluctuaciones normales en tu rutina. Presta atención a estos síntomas, pero probablemente un ajuste menor en el descanso o la nutrición sea suficiente. </p>
-<p- Mayoría de respuestas "c": Es una señal de alerta. Hay indicios claros de que podrías estar sufriendo de cansancio físico significativo, inicios de sobrecarga o desmotivación deportiva. Sería recomendable ajustar tu rutina de entrenamiento, aumentar el descanso, revisar tu nutrición y quizás buscar formas de recuperar el disfrute del deporte. </p>
-<p- Mayoría de respuestas "d": Hay fuertes indicios de sobrecarga deportiva (síndrome de sobreentrenamiento) o un estado avanzado de desmotivación/burnout. Es muy importante tomar medidas significativas: reducir drásticamente la carga de entrenamiento o tomar un descanso completo, buscar el apoyo de un profesional (entrenador, médico deportivo, nutricionista o psicólogo deportivo) para reevaluar tu plan y tu bienestar general. </p>
+            <p class="desc-btn">Ten en cuenta que esto es una guía y no un diagnóstico profesional.
+- Mayoría de respuestas "a": Lo más probable es que estés en una buena condición física y mental, disfrutando y recuperándote adecuadamente de tu actividad deportiva.
+- Mayoría de respuestas "b": Podrías estar experimentando un leve cansancio físico o mental, o simplemente fluctuaciones normales en tu rutina. Presta atención a estos síntomas, pero probablemente un ajuste menor en el descanso o la nutrición sea suficiente.
+- Mayoría de respuestas "c": Es una señal de alerta. Hay indicios claros de que podrías estar sufriendo de cansancio físico significativo, inicios de sobrecarga o desmotivación deportiva. Sería recomendable ajustar tu rutina de entrenamiento, aumentar el descanso, revisar tu nutrición y quizás buscar formas de recuperar el disfrute del deporte. 
+- Mayoría de respuestas "d": Hay fuertes indicios de sobrecarga deportiva (síndrome de sobreentrenamiento) o un estado avanzado de desmotivación/burnout. Es muy importante tomar medidas significativas: reducir drásticamente la carga de entrenamiento o tomar un descanso completo, buscar el apoyo de un profesional (entrenador, médico deportivo, nutricionista o psicólogo deportivo) para reevaluar tu plan y tu bienestar general. </p>
         </a>
     </div>
 
@@ -605,63 +604,7 @@
     </section>
 
   </main>
-
-
-  <script>
-    // TEMA
-    const html = document.documentElement;
-    const btnTheme = document.getElementById("themeToggle");
-    btnTheme.addEventListener("click", () => {
-      const current = html.getAttribute("data-theme");
-      const next = current === "light" ? "dark" : "light";
-      html.setAttribute("data-theme", next);
-      localStorage.setItem("theme", next);
-    });
-
-    // INTERACCION FLIP
-    document.addEventListener("click", function (e) {
-      const card = e.target.closest(".comment-card");
-      if (card) card.classList.toggle("flipped");
-    });
-
-    // AGREGAR COMENTARIO
-    const btnSubmit = document.getElementById("btnSubmitComment");
-    const grid = document.getElementById("commentsGrid");
-
-    btnSubmit.addEventListener("click", function () {
-      const name = document.getElementById("userName").value.trim();
-      const role = document.getElementById("userRole").value.trim();
-      let avatar = document.getElementById("userAvatar").value.trim() || "https://i.pravatar.cc/150?u="+Date.now();
-      const story = document.getElementById("userStory").value.trim();
-
-      if (name && story) {
-        const div = document.createElement("div");
-        div.className = "comment-card";
-        div.innerHTML = `
-          <div class="comment-card-inner">
-            <div class="comment-card-front">
-              <img src="${avatar}" alt="${name}">
-              <div class="front-info">
-                <div class="name">${name}</div>
-                <div class="role">${role || 'Deportista'}</div>
-              </div>
-            </div>
-            <div class="comment-card-back">
-              <strong>HISTORIA DE ${name.toUpperCase()}</strong><br><br>
-              "${story}"
-            </div>
-          </div>
-        `;
-        grid.appendChild(div);
-        // Limpiar
-        document.getElementById("userName").value = "";
-        document.getElementById("userStory").value = "";
-      }
-    });
-  </script>
-<div class="social-wrapper">
-
-    <a href="https://www.instagram.com/vsebastianarango?igsh=d2hoOXZudXc4Mmxw" target="_blank" class="insta-btn-modern">
+   <a href="https://www.instagram.com/vsebastianarango?igsh=d2hoOXZudXc4Mmxw" target="_blank" class="insta-btn-modern">
     <div class="icon-box">
       <svg viewBox="0 0 512 512" class="insta-svg">
         <defs>
@@ -760,6 +703,62 @@
   transform: scale(1.1);
 }
 </style>
+
+  <script>
+    // TEMA
+    const html = document.documentElement;
+    const btnTheme = document.getElementById("themeToggle");
+    btnTheme.addEventListener("click", () => {
+      const current = html.getAttribute("data-theme");
+      const next = current === "light" ? "dark" : "light";
+      html.setAttribute("data-theme", next);
+      localStorage.setItem("theme", next);
+    });
+
+    // INTERACCION FLIP
+    document.addEventListener("click", function (e) {
+      const card = e.target.closest(".comment-card");
+      if (card) card.classList.toggle("flipped");
+    });
+
+    // AGREGAR COMENTARIO
+    const btnSubmit = document.getElementById("btnSubmitComment");
+    const grid = document.getElementById("commentsGrid");
+
+    btnSubmit.addEventListener("click", function () {
+      const name = document.getElementById("userName").value.trim();
+      const role = document.getElementById("userRole").value.trim();
+      let avatar = document.getElementById("userAvatar").value.trim() || "https://i.pravatar.cc/150?u="+Date.now();
+      const story = document.getElementById("userStory").value.trim();
+
+      if (name && story) {
+        const div = document.createElement("div");
+        div.className = "comment-card";
+        div.innerHTML = `
+          <div class="comment-card-inner">
+            <div class="comment-card-front">
+              <img src="${avatar}" alt="${name}">
+              <div class="front-info">
+                <div class="name">${name}</div>
+                <div class="role">${role || 'Deportista'}</div>
+              </div>
+            </div>
+            <div class="comment-card-back">
+              <strong>HISTORIA DE ${name.toUpperCase()}</strong><br><br>
+              "${story}"
+            </div>
+          </div>
+        `;
+        grid.appendChild(div);
+        // Limpiar
+        document.getElementById("userName").value = "";
+        document.getElementById("userStory").value = "";
+      }
+    });
+  </script>
+<div class="social-wrapper">
+
+ 
   
  
 </html>
