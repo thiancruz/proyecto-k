@@ -32,10 +32,8 @@
       font-family: "Segoe UI", sans-serif;
       min-height: 100vh;
       transition: background 0.4s;
-      line-height: 1.6;
     }
 
-    /* --- HEADER --- */
     header {
       padding: 1.2rem 2rem;
       display: flex;
@@ -71,7 +69,7 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
-    .hero p { font-size: 1.2rem; opacity: 0.9; max-width: 800px; margin: 0 auto; }
+    .hero p { font-size: 1.2rem; opacity: 0.9; max-width: 800px; margin: 0 auto; line-height: 1.6; }
 
     .card-manifesto {
       background: var(--bg-card);
@@ -91,21 +89,20 @@
       filter: grayscale(20%);
     }
 
-    /* --- GRID BOTONES (DIAGNÓSTICO Y EXPERTO) --- */
+    /* --- BOTONES DE DIAGNÓSTICO Y EXPERTO --- */
     .grid-botones-finales {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
         gap: 20px;
         margin: 50px 0;
     }
-
     .link-k-style {
         background: rgba(255, 255, 255, 0.03);
         border: 1px solid var(--border);
         border-radius: 20px;
         padding: 30px;
         text-decoration: none;
-        color: var(--text);
+        color: #fff;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -113,27 +110,23 @@
         transition: all 0.4s ease;
         backdrop-filter: blur(10px);
     }
-
     .link-k-style:hover {
         border-color: var(--primary-neon);
-        background: rgba(0, 242, 255, 0.05);
+        background: rgba(0, 242, 254, 0.05);
         transform: translateY(-5px);
     }
-
     .link-k-style img {
-        width: 100%;
-        max-width: 250px;
+        width: 220px;
         aspect-ratio: 16/9;
         border-radius: 12px;
         object-fit: cover;
         margin-bottom: 15px;
         border: 1px solid var(--border);
     }
+    .titulo-btn { font-family: 'Segoe UI', sans-serif; color: var(--accent); margin-bottom: 8px; letter-spacing: 2px; font-weight: bold; }
+    .desc-btn { font-size: 0.85rem; color: #bbb; line-height: 1.4; text-align: left; }
 
-    .titulo-btn { color: var(--accent); font-weight: bold; margin-bottom: 10px; letter-spacing: 1px; }
-    .desc-btn { font-size: 0.85rem; color: #bbb; }
-
-    /* --- VIDEO SECTIONS --- */
+    /* --- VIDEO SECTION --- */
     .video-card {
       background: var(--bg-card);
       border-radius: 16px;
@@ -144,15 +137,9 @@
     .video-card video { width: 100%; border-radius: 12px; margin-top: 1rem; }
 
     /* --- PODCAST PLAYER --- */
-    .podcast-section {
-        display: flex;
-        justify-content: center;
-        margin: 4rem 0;
-    }
+    .podcast-section { display: flex; justify-content: center; margin: 4rem 0; }
     .player-container {
-        width: 100%;
-        max-width: 400px;
-        padding: 40px;
+        width: 100%; max-width: 380px; padding: 40px;
         background: rgba(255, 255, 255, 0.05);
         backdrop-filter: blur(20px);
         border-radius: 30px;
@@ -160,76 +147,48 @@
         text-align: center;
     }
     .track-title {
-        font-size: 24px;
-        font-weight: 800;
-        margin-bottom: 20px;
+        font-size: 28px; font-weight: 800; margin-bottom: 20px;
         background: linear-gradient(to right, #fff, var(--primary-neon));
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+        -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     }
-    #visualizer {
-        height: 60px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 3px;
-        margin-bottom: 20px;
-    }
-    .bar {
-        width: 4px;
-        height: 5px;
-        background: var(--primary-neon);
-        border-radius: 2px;
-        transition: height 0.1s;
-    }
-    .controls { display: flex; justify-content: center; gap: 15px; align-items: center; }
-    .btn-audio {
-        background: var(--accent);
-        border: none;
-        color: white;
-        padding: 10px 20px;
-        border-radius: 20px;
-        cursor: pointer;
-    }
+    #visualizer { height: 80px; display: flex; align-items: center; justify-content: center; gap: 3px; margin-bottom: 30px; }
+    .bar { flex: 1; max-width: 6px; height: 5px; background: var(--primary-neon); border-radius: 3px; transition: height 0.1s; }
+    .controls-audio { display: flex; justify-content: center; align-items: center; gap: 15px; }
+    .btn-audio { background: var(--accent); border: none; color: white; padding: 12px; border-radius: 50%; cursor: pointer; width: 50px; height: 50px; }
 
-    /* --- RELATOS (FLIP CARDS) --- */
+    /* --- RELATOS GRID --- */
     .comments-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 2rem;
       margin: 2rem 0;
     }
-    .comment-card { height: 350px; perspective: 1000px; cursor: pointer; }
+    .comment-card { height: 400px; perspective: 1000px; cursor: pointer; }
     .comment-card-inner {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      transition: transform 0.6s;
+      position: relative; width: 100%; height: 100%;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
       transform-style: preserve-3d;
     }
     .comment-card.flipped .comment-card-inner { transform: rotateY(180deg); }
     .comment-card-front, .comment-card-back {
       position: absolute; width: 100%; height: 100%;
-      backface-visibility: hidden; border-radius: 20px; overflow: hidden;
+      backface-visibility: hidden; border-radius: 20px; border: 1px solid var(--border); overflow: hidden;
     }
     .comment-card-front img { width: 100%; height: 100%; object-fit: cover; }
+    .front-info {
+      position: absolute; bottom: 0; width: 100%; padding: 1.5rem;
+      background: linear-gradient(transparent, rgba(0,0,0,0.8)); color: white;
+    }
     .comment-card-back {
-      background: var(--bg-card);
-      transform: rotateY(180deg);
-      padding: 2rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      border: 1px solid var(--accent);
+      background: var(--bg-card); transform: rotateY(180deg);
+      padding: 2rem; display: flex; flex-direction: column;
+      justify-content: center; align-items: center; text-align: center;
     }
 
     /* --- FORMULARIO --- */
     .add-comment-form {
-      background: rgba(138, 107, 255, 0.05);
-      padding: 2.5rem;
-      border-radius: 24px;
-      border: 2px dashed var(--border);
-      margin-top: 4rem;
+      background: rgba(138, 107, 255, 0.05); padding: 2.5rem;
+      border-radius: 24px; border: 2px dashed var(--border); margin-top: 4rem;
     }
     .add-comment-form input, .add-comment-form textarea {
       width: 100%; padding: 1rem; margin-bottom: 1rem;
@@ -238,38 +197,20 @@
     }
     .add-comment-form button {
       padding: 1rem 2rem; background: var(--accent); color: white;
-      border: none; border-radius: 30px; cursor: pointer; font-weight: bold;
-      width: 100%;
+      border: none; border-radius: 30px; cursor: pointer; font-weight: bold; width: 100%;
     }
 
     /* --- REDES SOCIALES --- */
-    .social-wrapper {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 30px;
-        justify-content: center;
-        padding: 40px 0;
-    }
-    .insta-btn-modern {
-        text-decoration: none;
-        text-align: center;
-    }
+    .social-wrapper { display: flex; gap: 30px; justify-content: center; align-items: center; padding: 40px; }
+    .insta-btn-modern { display: flex; flex-direction: column; align-items: center; text-decoration: none; }
     .icon-box {
-        width: 70px; height: 70px;
-        background: rgba(255, 255, 255, 0.05);
-        border-radius: 20px;
-        display: flex; justify-content: center; align-items: center;
-        border: 1px solid var(--border);
-        margin-bottom: 10px;
-        transition: 0.3s;
+      width: 70px; height: 70px; background: rgba(255, 255, 255, 0.03);
+      border-radius: 22px; display: flex; justify-content: center; align-items: center;
+      border: 1px solid rgba(255, 255, 255, 0.1); transition: 0.4s;
     }
-    .insta-btn-modern:hover .icon-box {
-        transform: translateY(-5px);
-        border-color: #bc1888;
-        box-shadow: 0 10px 20px rgba(188, 24, 136, 0.3);
-    }
-    .insta-svg { width: 35px; fill: white; }
-    .btn-label { color: white; font-size: 10px; letter-spacing: 1px; opacity: 0.7; }
+    .insta-svg { width: 38px; fill: white; transition: 0.4s; }
+    .btn-label { margin-top: 12px; color: white; font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; opacity: 0.5; }
+    .insta-btn-modern:hover .icon-box { transform: translateY(-10px); border-color: #bc1888; box-shadow: 0 15px 30px rgba(188, 24, 136, 0.4); }
   </style>
 </head>
 <body>
@@ -287,66 +228,82 @@
 
     <section class="card-manifesto">
         <h3>MUROS MENTALES</h3>
-        <p>"Entrenaste el cuerpo, pero nadie te enseñó qué hacer cuando la mente dice basta. Este es el espacio para entender que parar también es parte del proceso."</p>
+        <p>"Entrenaste el cuerpo, pero nadie te enseñó qué hacer cuando la mente dice basta. Este es el espacio para los que han perdido las ganas, para los que compiten contra el vacío y para entender que parar también es parte del proceso."</p>
+        <p style="margin-top: 1rem; font-style: italic; opacity: 0.8;">— Aquí el silencio se convierte en fuerza.</p>
         <img src="2.jpeg" alt="Muros Mentales" />
     </section>
 
     <div class="grid-botones-finales">
-        <a href="https://kahoot.it/challenge/..." class="link-k-style">
+        <a href="https://kahoot.it/challenge/06162304?challenge-id=d0eebf76-6316-40f9-be1b-f6bd0eb73034_1776475023042" class="link-k-style">
             <img src="psico.jpeg" alt="Test">
             <p class="titulo-btn">TEST DE AUTODIAGNÓSTICO</p>
-            <p class="desc-btn">Descubre tu estado actual: desde un rendimiento óptimo hasta señales de burnout deportivo.</p>
+            <div class="desc-btn">
+                <p><strong>Resultados del Test:</strong></p>
+                <p>• <strong>Mayoría A:</strong> Buena condición física y mental.</p>
+                <p>• <strong>Mayoría B:</strong> Cansancio leve. Ajusta descanso y nutrición.</p>
+                <p>• <strong>Mayoría C:</strong> Señal de alerta. Posible sobrecarga o desmotivación.</p>
+                <p>• <strong>Mayoría D:</strong> Burnout avanzado. Busca apoyo profesional urgente.</p>
+            </div>
         </a>
-        <a href="https://scielo.isciii.es/..." class="link-k-style">
+        <a href="https://scielo.isciii.es/scielo.php?pid=S1578-84232020000100002&script=sci_arttext" class="link-k-style">
             <img src="icient.jpeg" alt="Experto">
             <p class="titulo-btn">SECCIÓN DE EXPERTO</p>
-            <p class="desc-btn">Artículos científicos y consejos profesionales sobre el agotamiento mental en el deporte.</p>
+            <p class="desc-btn">Artículos y consejos de psicólogos deportivos sobre el agotamiento mental y burnout.</p>
         </a>
     </div>
 
     <section class="video-card">
-        <h3>Motivación y Desmotivación</h3>
+        <h3>Video 1: Motivación y desmotivación deportiva</h3>
         <video controls><source src="VIDEO 1.mp4" type="video/mp4"></video>
+    </section>
+    <section class="video-card">
+        <h3>Video 2: La ciencia del descanso</h3>
+        <video controls><source src="VIDEO 2.mp4" type="video/mp4"></video>
     </section>
 
     <div class="podcast-section">
         <div class="player-container">
-            <span style="font-size: 12px; color: var(--primary-neon);">ESCUCHA NUESTRO</span>
-            <h1 class="track-title">PODCAST: EL PESO INVISIBLE</h1>
+            <span style="color:var(--primary-neon); letter-spacing: 2px; font-size: 12px;">PODCAST</span>
+            <h1 class="track-title">EL PESO INVISIBLE</h1>
             <div id="visualizer"></div>
-            <div class="controls">
-                <button class="btn-audio" id="rewindBtn">-10s</button>
-                <button class="btn-audio" id="playPauseBtn">PLAY</button>
-                <button class="btn-audio" id="forwardBtn">+10s</button>
+            <div class="controls-audio">
+                <button class="btn-audio" id="rewindBtn">↺</button>
+                <button class="btn-audio" id="playPauseBtn">▶</button>
+                <button class="btn-audio" id="forwardBtn">↻</button>
             </div>
             <audio id="myAudio"><source src="copy_08F2DEA4-6FE6-43EF-AAAB-64196DF760E7.mp3" type="audio/mpeg"></audio>
         </div>
     </div>
 
-    <h2 style="text-align:center; color: var(--accent); margin: 3rem 0;">Relatos del Sustrato</h2>
+    <h2 style="text-align:center; color: var(--accent); margin-bottom: 2rem;">Relatos del Sustrato</h2>
     <section class="comments-grid" id="commentsGrid">
       <div class="comment-card" onclick="this.classList.toggle('flipped')">
         <div class="comment-card-inner">
           <div class="comment-card-front">
             <img src="SEBAS AA.jpeg" alt="Sebastian A.">
-            <div style="position:absolute; bottom:10px; left:15px;"><strong>Sebastian A.</strong><br><small>BOXEADOR</small></div>
+            <div class="front-info"><div class="name">Sebastian A.</div><div class="role">BOXEADOR</div></div>
           </div>
-          <div class="comment-card-back">
-            <strong>EL PESO DE LOS GUANTES</strong><br><br>
-            "Boxear era un escape, luego se volvió un peso en mi vida."
-          </div>
+          <div class="comment-card-back"><strong>EL PESO DE LOS GUANTES</strong><br><br>"Boxear era un escape de la realidad, luego se volvió un peso en mi vida."</div>
         </div>
       </div>
+
       <div class="comment-card" onclick="this.classList.toggle('flipped')">
         <div class="comment-card-inner">
           <div class="comment-card-front">
             <img src="SEBAS C.jpeg" alt="Sebastian C.">
-            <div style="position:absolute; bottom:10px; left:15px;"><strong>Sebastian C.</strong><br><small>CORREDOR</small></div>
+            <div class="front-info"><div class="name">Sebastian C.</div><div class="role">CORREDOR</div></div>
           </div>
-          <div class="comment-card-back">
-            <strong>NUEVOS RUMBOS</strong><br><br>
-            "La presión por mejorar tiempos me desmotivó, hasta que decidí correr solo por placer."
+          <div class="comment-card-back"><strong>NUEVOS RUMBOS</strong><br><br>"La presión por mejorar tiempos me desmotivó, hasta que decidí volver a correr solo por placer."</div>
+        </div>
+      </div>
+
+      <div class="comment-card" onclick="this.classList.toggle('flipped')">
+        <div class="comment-card-inner">
+          <div class="comment-card-front">
+            <img src="KATERIN A.jpeg" alt="Katerin A.">
+            <div class="front-info"><div class="name">KATERIN A.</div><div class="role">KAYAKISTA</div></div>
           </div>
+          <div class="comment-card-back"><strong>FLUIR SIN CORRIENTE</strong><br><br>"Hay días donde el agua se siente espesa. He aprendido que no estar motivada no me hace menos atleta, me hace humana."</div>
         </div>
       </div>
     </section>
@@ -354,29 +311,25 @@
     <section class="add-comment-form">
       <h3>Comparte tu historia</h3>
       <input type="text" id="userName" placeholder="Tu nombre" />
-      <input type="text" id="userRole" placeholder="Deporte" />
-      <textarea id="userStory" rows="4" placeholder="Tu experiencia..."></textarea>
+      <input type="text" id="userRole" placeholder="Deporte / Rol" />
+      <textarea id="userStory" rows="4" placeholder="¿Cuándo sentiste ese peso invisible?"></textarea>
       <button id="btnSubmitComment">Publicar mi experiencia</button>
     </section>
 
     <div class="social-wrapper">
-        <a href="https://www.instagram.com/vsebastianarango" class="insta-btn-modern">
-            <div class="icon-box">
-                <svg class="insta-svg" viewBox="0 0 512 512"><path d="M256 109.3c47.8 0 53.4.2 72.3 1 17.4.8 26.9 3.7 33.2 6.2 8.3 3.2 14.3 7.1 20.5 13.3 6.2 6.2 10.1 12.1 13.3 20.5 2.5 6.3 5.4 15.8 6.2 33.2 1 18.9 1 24.5 1 72.3s-.2 53.4-1 72.3c-.8 17.4-3.7 26.9-6.2 33.2-3.2 8.3-7.1 14.3-13.3 20.5-6.2 6.2-12.1 10.1-20.5 13.3-6.3 2.5-15.8 5.4-33.2 6.2-18.9 1-24.5 1-72.3 1s-53.4-.2-72.3-1c-17.4-.8-26.9-3.7-33.2-6.2-8.3-3.2-14.3-7.1-20.5-13.3-6.2-6.2-10.1-12.1-13.3-20.5-2.5-6.3-5.4-15.8-6.2-33.2-1-18.9-1-24.5-1-72.3s.2-53.4 1-72.3c.8-17.4 3.7-26.9 6.2-33.2 3.2-8.3 7.1-14.3 13.3-20.5 6.2-6.2 12.1-10.1 20.5-13.3 6.3-2.5 15.8-5.4 33.2-6.2 18.9-1 24.5-1 72.3-1m0-45.4c-48.4 0-54.5.2-73.5 1-19 .9-32 3.9-43.4 8.3-11.8 4.6-21.7 10.7-31.7 20.6-9.9 9.9-16.1 19.9-20.6 31.7-4.4 11.4-7.4 24.4-8.3 43.4-.9 19-1 25.1-1 73.5s.2 54.5 1 73.5c.9 19 3.9 32 8.3 43.4 4.6 11.8 10.7 21.7 20.6 31.7 9.9 9.9 19.9 16.1 31.7 20.6 11.4 4.4 24.4 7.4 43.4 8.3 19 .9 25.1 1 73.5 1s54.5-.2 73.5-1c19-.9 32-3.9 43.4-8.3 11.8-4.6 21.7-10.7 31.7-20.6 9.9-9.9 16.1-19.9 20.6-31.7 4.4-11.4 7.4-24.4 8.3-43.4.9-19 1-25.1 1-73.5s-.2-54.5-1-73.5c-.9-19-3.9-32-8.3-43.4-4.6-11.8-10.7-21.7-20.6-31.7-9.9-9.9-19.9-16.1-31.7-20.6-11.4-4.4-24.4-7.4-43.4-8.3-19-.9-25.1-1-73.5-1z"/></svg>
-            </div>
+        <a href="https://www.instagram.com/vsebastianarango" target="_blank" class="insta-btn-modern">
+            <div class="icon-box"><svg class="insta-svg" viewBox="0 0 512 512"><path d="M256 109.3c47.8 0 53.4.2 72.3 1 17.4.8 26.9 3.7 33.2 6.2 8.3 3.2 14.3 7.1 20.5 13.3 6.2 6.2 10.1 12.1 13.3 20.5 2.5 6.3 5.4 15.8 6.2 33.2 1 18.9 1 24.5 1 72.3s-.2 53.4-1 72.3c-.8 17.4-3.7 26.9-6.2 33.2-3.2 8.3-7.1 14.3-13.3 20.5-6.2 6.2-12.1 10.1-20.5 13.3-6.3 2.5-15.8 5.4-33.2 6.2-18.9 1-24.5 1-72.3 1s-53.4-.2-72.3-1c-17.4-.8-26.9-3.7-33.2-6.2-8.3-3.2-14.3-7.1-20.5-13.3-6.2-6.2-10.1-12.1-13.3-20.5-2.5-6.3-5.4-15.8-6.2-33.2-1-18.9-1-24.5-1-72.3s.2-53.4 1-72.3c.8-17.4 3.7-26.9 6.2-33.2 3.2-8.3 7.1-14.3 13.3-20.5 6.2-6.2 12.1-10.1 20.5-13.3 6.3-2.5 15.8-5.4 33.2-6.2 18.9-1 24.5-1 72.3-1z"/></svg></div>
             <span class="btn-label">SEBASTIAN ARANGO</span>
         </a>
-        <a href="https://www.instagram.com/sebascruz_24" class="insta-btn-modern">
-            <div class="icon-box">
-                <svg class="insta-svg" viewBox="0 0 512 512"><path d="M256 109.3c47.8 0 53.4.2 72.3 1 17.4.8 26.9 3.7 33.2 6.2 8.3 3.2 14.3 7.1 20.5 13.3 6.2 6.2 10.1 12.1 13.3 20.5 2.5 6.3 5.4 15.8 6.2 33.2 1 18.9 1 24.5 1 72.3s-.2 53.4-1 72.3c-.8 17.4-3.7 26.9-6.2 33.2-3.2 8.3-7.1 14.3-13.3 20.5-6.2 6.2-12.1 10.1-20.5 13.3-6.3 2.5-15.8 5.4-33.2 6.2-18.9 1-24.5 1-72.3 1s-53.4-.2-72.3-1c-17.4-.8-26.9-3.7-33.2-6.2-8.3-3.2-14.3-7.1-20.5-13.3-6.2-6.2-10.1-12.1-13.3-20.5-2.5-6.3-5.4-15.8-6.2-33.2-1-18.9-1-24.5-1-72.3s.2-53.4 1-72.3c.8-17.4 3.7-26.9 6.2-33.2 3.2-8.3 7.1-14.3 13.3-20.5 6.2-6.2 12.1-10.1 20.5-13.3 6.3-2.5-15.8-5.4-33.2-6.2 18.9-1 24.5-1 72.3-1m0-45.4c-48.4 0-54.5.2-73.5 1-19 .9-32 3.9-43.4 8.3-11.8 4.6-21.7 10.7-31.7 20.6-9.9 9.9-16.1 19.9-20.6 31.7-4.4 11.4-7.4 24.4-8.3 43.4-.9 19-1 25.1-1 73.5s.2 54.5 1 73.5c.9 19 3.9 32 8.3 43.4 4.6 11.8 10.7 21.7 20.6 31.7 9.9 9.9 19.9 16.1 31.7 20.6 11.4 4.4 24.4 7.4 43.4 8.3 19 .9 25.1 1 73.5 1s54.5-.2 73.5-1c19-.9 32-3.9 43.4-8.3 11.8-4.6 21.7-10.7 31.7-20.6 9.9-9.9 16.1-19.9 20.6-31.7 4.4-11.4 7.4-24.4 8.3-43.4.9-19 1-25.1 1-73.5s-.2-54.5-1-73.5c-.9-19-3.9-32-8.3-43.4-4.6-11.8-10.7-21.7-20.6-31.7-9.9-9.9-19.9-16.1-31.7-20.6-11.4-4.4-24.4-7.4-43.4-8.3-19-.9-25.1-1-73.5-1z"/></svg>
-            </div>
+        <a href="https://www.instagram.com/sebascruz_24" target="_blank" class="insta-btn-modern">
+            <div class="icon-box"><svg class="insta-svg" viewBox="0 0 512 512"><path d="M256 109.3c47.8 0 53.4.2 72.3 1 17.4.8 26.9 3.7 33.2 6.2 8.3 3.2 14.3 7.1 20.5 13.3 6.2 6.2 10.1 12.1 13.3 20.5 2.5 6.3 5.4 15.8 6.2 33.2 1 18.9 1 24.5 1 72.3s-.2 53.4-1 72.3c-.8 17.4-3.7 26.9-6.2 33.2-3.2 8.3-7.1 14.3-13.3 20.5-6.2 6.2-12.1 10.1-20.5 13.3-6.3 2.5-15.8 5.4-33.2 6.2-18.9 1-24.5 1-72.3 1s-53.4-.2-72.3-1z"/></svg></div>
             <span class="btn-label">SEBASTIAN CRUZ</span>
         </a>
     </div>
   </main>
 
   <script>
-    // Cambio de tema
+    // Tema
     const btnTheme = document.getElementById("themeToggle");
     btnTheme.addEventListener("click", () => {
       const html = document.documentElement;
@@ -384,13 +337,12 @@
       html.setAttribute("data-theme", next);
     });
 
-    // Lógica Podcast y Visualizador
+    // Podcast Visualizer
     const audio = document.getElementById('myAudio');
     const playPauseBtn = document.getElementById('playPauseBtn');
     const visualizer = document.getElementById('visualizer');
     const bars = [];
-
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 30; i++) {
         const bar = document.createElement('div');
         bar.className = 'bar';
         visualizer.appendChild(bar);
@@ -399,51 +351,34 @@
 
     function animate() {
         if (!audio.paused) {
-            bars.forEach(bar => {
-                const h = Math.random() * 40 + 5;
-                bar.style.height = h + 'px';
-            });
+            bars.forEach(bar => { bar.style.height = (Math.random() * 60 + 5) + 'px'; });
             requestAnimationFrame(animate);
         }
     }
 
     playPauseBtn.addEventListener('click', () => {
-        if (audio.paused) {
-            audio.play();
-            playPauseBtn.innerText = "PAUSE";
-            animate();
-        } else {
-            audio.pause();
-            playPauseBtn.innerText = "PLAY";
-        }
+        if (audio.paused) { audio.play(); playPauseBtn.innerText = 'Ⅱ'; animate(); }
+        else { audio.pause(); playPauseBtn.innerText = '▶'; }
     });
 
     document.getElementById('rewindBtn').addEventListener('click', () => audio.currentTime -= 10);
     document.getElementById('forwardBtn').addEventListener('click', () => audio.currentTime += 10);
 
-    // Agregar comentarios
+    // Formulario de comentarios
     document.getElementById("btnSubmitComment").addEventListener("click", () => {
       const name = document.getElementById("userName").value;
       const story = document.getElementById("userStory").value;
       if(name && story) {
-        const grid = document.getElementById("commentsGrid");
         const card = document.createElement("div");
         card.className = "comment-card";
         card.onclick = function() { this.classList.toggle('flipped'); };
-        card.innerHTML = `
-          <div class="comment-card-inner">
-            <div class="comment-card-front" style="background:#444; display:flex; align-items:center; justify-content:center;">
-              <strong>${name}</strong>
-            </div>
-            <div class="comment-card-back">"${story}"</div>
-          </div>`;
-        grid.appendChild(card);
-        alert("¡Gracias por compartir!");
+        card.innerHTML = `<div class="comment-card-inner"><div class="comment-card-front" style="background:#444; display:flex; align-items:center; justify-content:center;"><strong>${name}</strong></div><div class="comment-card-back">"${story}"</div></div>`;
+        document.getElementById("commentsGrid").appendChild(card);
+        document.getElementById("userName").value = ""; document.getElementById("userStory").value = "";
       }
     });
   </script>
 </body>
-</html>
- 
+</html> 
   
  
